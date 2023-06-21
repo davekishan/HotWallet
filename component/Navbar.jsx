@@ -35,6 +35,7 @@ export const Navbar = () => {
 
           </div>
         </div>
+        
         <button className='btn btn-primary mx-5' onClick={logout}>Logout</button>
       </nav>
       <ToastContainer />

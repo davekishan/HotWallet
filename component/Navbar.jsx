@@ -24,18 +24,19 @@ export const Navbar = () => {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <NavLink className="navbar-brand" to='/home'>Navbar</NavLink>
+        <NavLink className="navbar-brand" to='/home'>DWallet</NavLink>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
             <NavLink className="nav-item nav-link" to='/home'>Home <span className="sr-only"></span></NavLink>
-            <NavLink className="nav-item nav-link" to='/home'>Send</NavLink>
+            <NavLink className="nav-item nav-link" to='/deposit'>Deposit</NavLink>
+            <NavLink className="nav-item nav-link" to='/about'>About<span className="sr-only"></span></NavLink>
 
           </div>
         </div>
-        <button className='btn btn-primary mx-5' onClick={logout}>Logout</button>
+        <button className='btn btn-success mx-5' onClick={logout}>Logout</button>
       </nav>
       <ToastContainer />
 

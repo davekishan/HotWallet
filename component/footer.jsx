@@ -1,7 +1,5 @@
 import React from 'react'
-import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+
 
 
 export const Footer = () => {
@@ -16,7 +14,7 @@ export const Footer = () => {
                             <div className="col-md-3">
                                 <div className="footer-logo">
                                    
-                                    <div className='footer-logo-title'>Hot-Wallet</div>
+                                    <div className='footer-logo-title'>DWallet</div>
                                 </div>
                                 <div className="footer-address">
                                     The Capital <br />
@@ -24,11 +22,7 @@ export const Footer = () => {
                                     Science City Rd <br />
                                     Sola, Ahmedabad, Gujarat - 380060 <br />
                                 </div>
-                                <div className="footer-icons">
-                                    <i className="fa-brands fa-facebook"></i>
-                                    <i className="fa-brands fa-twitter"></i>
-                                    <i className="fa-brands fa-linkedin"></i>
-                                </div>
+                               
                             </div>
                             <div className="col-md-3">
                             </div>
@@ -42,7 +36,7 @@ export const Footer = () => {
                     <div className="copyright-section">
 
                         &copy;
-                        2023-2026 Hot-Wallet. All rights reserved
+                        2023-2026 DWallet. All rights reserved
 
                     </div>
 

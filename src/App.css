@@ -29,7 +29,7 @@ section
 section::before 
 {
   content: '';
-  position: absolute;
+position: absolute;
   width: 100%;
   height: 100%;
   background: linear-gradient(#000,#0f0,#000);
@@ -182,6 +182,20 @@ input[type="submit"]:active
   }
 }
 
+.popup-box {
+  position: absolute;
+  z-index: 1111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  backdrop-filter: blur(5px);
+}
+.popup-box-inner {
+  max-width: 320px;
+  width: 100%;
+}
 .form-otp {
   display: flex;
   row-gap: 20px;
@@ -189,6 +203,7 @@ input[type="submit"]:active
   border-radius: 15px;
   background-color: white;
   transition: .4s ease-in-out;
+  padding: 20px 30px 30px;  
 }
 
 .form-otp:hover {
@@ -210,6 +225,7 @@ input[type="submit"]:active
 .input-otp {
   position: relative;
   height: 2.5em;
+  width: 100%;
   border-radius: 5px;
   border: none;
   outline: none;
@@ -262,4 +278,58 @@ input[type="submit"]:active
 .btn2-otp:active {
   box-shadow: inset 3px 3px 6px #b5b5b5,
     inset -3px -3px 6px #ffffff;
+}
+
+.container {
+  max-width: 1200px;
+}
+
+.market-page {
+  padding-bottom: 60px;
+}
+
+.footer {
+  background-color: #1e2232;
+  color: white;
+  padding: 30px;
+}
+
+.footer-section {
+  border-bottom: 1px solid rgba(211, 206, 206, 0.3);
+  padding-top: 20px;
+  padding-bottom: 30px;
+  margin-bottom: 20px;
+}
+
+.footer .container .row img {
+  width: 45px;
+}
+
+.footer-logo {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+
+}
+
+.footer-logo-title {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.footer-address {
+  padding-top: 20px;
+  font-weight: 500;
+}
+
+.footer-icons {
+  display: flex;
+  column-gap: 20px;
+  padding-top: 10px;
+}
+
+.footer-icons i {
+  color: white;
+  font-size: 25px;
+
 }

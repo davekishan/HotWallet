@@ -23,13 +23,26 @@ export const Home = () => {
     setloader(false)
   }, [])
 
+  const createwallet=()=>{
+    fetch('/api/wallet/checkemail').then(response => response.json())
+      .then((data) => {
+        if (data.success) {
+            console.log("Success");
+          setloader(false)
+          navigate('/home')
+        }else{
+          navigate('/')
+        }
+      })
+  }
+
   return (
     <div>
       <div>
         <Navbar/>
       </div>
       <h1 style={{color:'white'}}>Welcome Home</h1>
-
+      <button className='btn btn-success' onClick={createwallet}>Create Wallet</button>
         <Footer/>
       </div>
   )

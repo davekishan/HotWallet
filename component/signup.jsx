@@ -11,7 +11,7 @@ export const Signup = () => {
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
     const [username, setusername] = useState("");
-    const [otppage, setotppage] = useState(true);
+    const [otppage, setotppage] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -20,8 +20,6 @@ export const Signup = () => {
         fetch('/api/login/checksession').then(response => response.json())
             .then((data) => {
                 if (data.success) {
-                    console.log("inside");
-
                     navigate('/home')
                 }
             })
@@ -39,7 +37,7 @@ export const Signup = () => {
             setotppage(true)
         }
         else if (response.data == false) {
-            toast.error('Error')
+            toast.error(data.message)
 
         }
 
@@ -76,7 +74,7 @@ export const Signup = () => {
 
                                 </div>
 
-                                <div className="links"> <a href="#">Signin</a>
+                                <div className="links"> <a href="/">Signin</a>
 
                                 </div>
 

@@ -34,7 +34,6 @@ export const Login = () => {
       const login = (e) => {
         e.preventDefault();
         setloader(true)
-        console.log("Login page");
         const response = fetch('/api/login/login', {
           method: 'post',
           body: JSON.stringify({
@@ -51,7 +50,7 @@ export const Login = () => {
               toast.success('LogedIn')
               navigate('/home')
             } else {
-                toast.error('Error')
+                toast.error(data.message)
               setloader(false)
             }
           })
@@ -82,7 +81,7 @@ export const Login = () => {
 
                             </div>
 
-                            <div className="links">  <a href="#">Signup</a>
+                            <div className="links">  <a href="/signup">Signup</a>
 
                             </div>
 

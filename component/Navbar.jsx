@@ -36,7 +36,12 @@ export const Navbar = () => {
 
           </div>
         </div>
+<<<<<<< HEAD
         <button className='btn btn-success mx-5' onClick={logout}>Logout</button>
+=======
+        
+        <button className='btn btn-primary mx-5' onClick={logout}>Logout</button>
+>>>>>>> 459710e9e0d7a906c64b54867ce42cf6fd0b61c7
       </nav>
       <ToastContainer />
 

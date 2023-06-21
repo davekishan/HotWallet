@@ -10,9 +10,7 @@ export const Login = () => {
     const [email,setemail]=useState("");
     const [password,setpassword]=useState("");
 
-    const [data, setdata] = useState('')
     const [loader, setloader] = useState(false);
-    const [otppage, setotppage] = useState(false)
     const navigate = useNavigate()
   
     

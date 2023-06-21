@@ -21,14 +21,14 @@ export const OtpPage = ({ setotppage }) => {
     }).then(res => res.json())
       .then((data) => {
         if (data.success) {
-            toast.success('Account Added')
+            toast.success(data.message)
           setotppage(false)
           setloader(false)
           navigate('/')
 
 
         } else {
-          toast.error('Error')
+          toast.error(data.message)
           setloader(false)
           navigate('/')
         }

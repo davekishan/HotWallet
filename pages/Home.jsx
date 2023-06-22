@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
   const [loader, setloader] = useState(false);
+  const [address, setAddress] = useState(false);
 
   const navigate = useNavigate();
 
@@ -23,19 +24,29 @@ export const Home = () => {
     setloader(false);
   }, []);
 
-  const createwallet = () => {
-    fetch("/api/wallet/checkemail")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          console.log("Success");
-          setloader(false);
-          navigate("/home");
-        } else {
-          navigate("/");
-        }
-      });
+  const createwallet =async () => {
+    const response= await fetch("/api/wallet/createwallet")
+      // .then((response) => response.json())
+      console.log(response);
+      console.log("hello");
+
   };
+
+  // const createwallet = () => {
+  //   fetch("/api/wallet/createwallet")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       if (data.success) {
+  //         console.log("Success");
+  //         setloader(false);
+  //         setAddress(data)
+  //         navigate("/home");
+  //       } else {
+  //         console.log("api not working ");
+  //         navigate("/");
+  //       }
+  //     });
+  // };
 
   return (
     <div>
@@ -61,7 +72,7 @@ export const Home = () => {
                       >
                         Create Wallet
                       </button>
-                      <p>Here is your new hotwallet:</p>
+                      <p>Here is your new hotwallet:{address}</p>
                     </form>
                   </div>
                 </div>

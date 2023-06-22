@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Navbar } from "../component/Navbar";
 import { useNavigate } from "react-router-dom";
+import web3  from "web3"
+import Fortmatic from 'fortmatic';
+import { ethers } from 'ethers';
+const fm = new Fortmatic('854da35712ca4bd391df59ff776c63bc', 'rinkeby');
+
 
 export const Home = () => {
   const [loader, setloader] = useState(false);
+  const [balance,setbalance]=useState();
 
   const navigate = useNavigate();
 
   useEffect(() => {
     setloader(true);
-
+   
     fetch("/api/login/checksession")
       .then((response) => response.json())
       .then((data) => {
@@ -21,6 +27,7 @@ export const Home = () => {
         }
       });
     setloader(false);
+
   }, []);
 
   const createwallet = () => {
@@ -37,10 +44,14 @@ export const Home = () => {
       });
   };
 
+  const getbalance=async()=>{
+    setbalance(await web3.eth.getBalance('0x5dfeE0717BE29269286B379Dc5dA26BDb51a67eD'))
+  }
+
   return (
     <div>
       <div>
-        <Navbar />
+        <Navbar balance={balance}/>
       </div>
 
       <div className="text-center">

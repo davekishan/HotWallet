@@ -3,9 +3,10 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-export const Navbar = () => {
+export const Navbar = ({balance}) => {
   const navigate=useNavigate();
   const [loader, setloader] = useState(false);
+  
 
   const logout=()=>{
     fetch('/api/login/logout').then(response => response.json())
@@ -20,6 +21,7 @@ export const Navbar = () => {
     })
 
   }
+  
 
   return (
     <div>
@@ -36,12 +38,8 @@ export const Navbar = () => {
 
           </div>
         </div>
-<<<<<<< HEAD
+        <h3 className='nav-item nav-link'>Blanace: </h3>
         <button className='btn btn-success mx-5' onClick={logout}>Logout</button>
-=======
-        
-        <button className='btn btn-primary mx-5' onClick={logout}>Logout</button>
->>>>>>> 459710e9e0d7a906c64b54867ce42cf6fd0b61c7
       </nav>
       <ToastContainer />
 

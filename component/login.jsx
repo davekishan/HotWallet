@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { OtpPage } from './OtpPage';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { Loader } from './Loader';
 
 export const Login = () => {
     
@@ -97,7 +98,10 @@ export const Login = () => {
 
             </section>
             <ToastContainer />
+        {loader &&
 
+        <Loader/>
+        }
         </div>
     )
 }

@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Navbar } from "../component/Navbar";
 import { useNavigate } from "react-router-dom";
-import web3  from "web3"
+import web3 from "web3"
 import { ethers } from 'ethers';
 import { Footer } from "../component/footer";
+import { Loader } from "../component/Loader";
 
 
 export const Home = () => {
-  const [loader, setloader] = useState(false);
-  const [address, setAddress] = useState(false);
-  const [balance,setbalance]=useState();
+  const [loader, setloader] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,7 +16,6 @@ export const Home = () => {
     fetch("/api/login/checksession")
       .then((response) => response.json())
       .then((data) => {
-        console.log("Fetch api");
         if (data.success) {
           setloader(false);
           navigate("/home");
@@ -29,13 +27,6 @@ export const Home = () => {
 
   }, []);
 
-  // const createwallet =async () => {
-  //   const response= await fetch("/api/wallet/createwallet")
-  //     // .then((response) => response.json())
-  //     console.log(response);
-  //     console.log("hello");
-
-  // };
 
   const createwallet = () => {
     fetch("/api/wallet/createwallet")
@@ -53,14 +44,11 @@ export const Home = () => {
       });
   };
 
-  const getbalance=()=>{
-    
-  }
 
   return (
     <div>
       <div>
-        <Navbar balance={balance}/>
+        <Navbar/>
       </div>
 
       <div className="text-center">
@@ -81,7 +69,7 @@ export const Home = () => {
                       >
                         Create Wallet
                       </button>
-                      <p>Here is your new hotwallet:{address}</p>
+                      <p>Here is your new hotwallet:</p>
                     </form>
                   </div>
                 </div>
@@ -90,6 +78,10 @@ export const Home = () => {
           </div>
         </div>
       </div>
+      {
+       loader && <Loader/>
+
+      }
       <Footer />
     </div>
   );

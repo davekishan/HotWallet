@@ -10,6 +10,7 @@ import { OtpPage } from "../component/OtpPage.jsx";
 import About from "./../component/About";
 import { Footer } from "../component/footer.jsx";
 import SendEth from "../component/SendEth.jsx";
+import { Loader } from "../component/Loader.jsx";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: "/sendeth",
     element: <SendEth/>,
+  }, 
+  {
+    path: "/loader",
+    element: <Loader/>,
   },
 ]);
 

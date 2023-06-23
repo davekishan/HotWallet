@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Navbar } from "../component/Navbar";
 import { useNavigate } from "react-router-dom";
 import web3  from "web3"
-import Fortmatic from 'fortmatic';
 import { ethers } from 'ethers';
-const fm = new Fortmatic('854da35712ca4bd391df59ff776c63bc', 'rinkeby');
 
 
 export const Home = () => {
@@ -15,10 +13,11 @@ export const Home = () => {
 
   useEffect(() => {
     setloader(true);
-   
+   console.log("Home use Effect");
     fetch("/api/login/checksession")
       .then((response) => response.json())
       .then((data) => {
+        console.log("Fetch api");
         if (data.success) {
           setloader(false);
           navigate("/home");
@@ -44,10 +43,7 @@ export const Home = () => {
       });
   };
 
-  const getbalance=async()=>{
-    setbalance(await web3.eth.getBalance('0x5dfeE0717BE29269286B379Dc5dA26BDb51a67eD'))
-  }
-
+ 
   return (
     <div>
       <div>

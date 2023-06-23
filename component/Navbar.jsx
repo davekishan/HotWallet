@@ -11,6 +11,7 @@ export const Navbar = ({balance}) => {
   const logout=()=>{
     fetch('/api/login/logout').then(response => response.json())
     .then((data) => {
+      
       if (data.success) {
         toast.success('Loged Out')
         setloader(false)

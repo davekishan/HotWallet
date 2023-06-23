@@ -8,9 +8,8 @@ import { SignupPage } from "../pages/SignupPage.jsx";
 import { Home } from "../pages/Home.jsx";
 import { OtpPage } from "../component/OtpPage.jsx";
 import About from "./../component/About";
-import Deposit from "../component/Deposit.jsx";
-import { Navbar } from "../component/Navbar";
 import { Footer } from "../component/footer.jsx";
+import SendEth from "../component/SendEth.jsx";
 
 const router = createBrowserRouter([
   {
@@ -34,8 +33,8 @@ const router = createBrowserRouter([
     element: <About />,
   },
   {
-    path: "/deposit",
-    element: <Deposit />,
+    path: "/sendeth",
+    element: <SendEth/>,
   },
 ]);
 

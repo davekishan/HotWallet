@@ -31,7 +31,7 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
             <NavLink className="nav-item nav-link" to='/home'>Home <span className="sr-only"></span></NavLink>
-            <NavLink className="nav-item nav-link" to='/deposit'>Deposit</NavLink>
+            <NavLink className="nav-item nav-link" to='/sendeth'>SendEth</NavLink>
             <NavLink className="nav-item nav-link" to='/about'>About<span className="sr-only"></span></NavLink>
 
           </div>

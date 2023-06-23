@@ -2,14 +2,14 @@ import React from "react";
 import { useState } from "react";
 import { Navbar } from "./Navbar";
 
-const Deposit = () => {
-  const [depositAmount, setDepositAmount] = useState("");
+const SendEth = () => {
+  const [sendAmount, setsendAmount] = useState("");
   const [loader, setloader] = useState(false);
 
 
 
 
-  const validateDepositAmount = (event) => {
+  const validateSendAmount = (event) => {
     let inputValue = event.target.value;
     // Remove any non-numeric characters except dot (.)
     inputValue = inputValue.replace(/[^0-9.]/g, "");
@@ -23,11 +23,11 @@ const Deposit = () => {
       event.target.setCustomValidity("");
     }
 
-    setDepositAmount(inputValue);
+    setsendAmount(inputValue);
   };
 
-  const deposit = () => {
-    fetch("/api/wallet/deposit")
+  const sendeth = () => {
+    fetch("/api/wallet/sendeth")
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
@@ -46,7 +46,7 @@ const Deposit = () => {
       
       <div className="container py-5">
         <h1 className="text-center" style={{ color: "white" }}>
-          Deposit Eth With Dwallet
+          Send Eth With Dwallet
         </h1>
         <div className="row">
           <div className="col-lg-7 mx-auto">
@@ -71,16 +71,16 @@ const Deposit = () => {
                         placeholder="Enter Amount in ETH"
                         required
                         className="form-control"
-                        value={depositAmount}
-                        onChange={validateDepositAmount}
+                        value={sendAmount}
+                        onChange={validateSendAmount}
                       />
                     </div>
 
                     <button
                       type="button"
                       className="subscribe btn btn-success btn-block  shadow-sm"
-                      onClick={deposit} >
-                      Deposit
+                      onClick={sendeth} >
+                      Send ETH
                     </button>
                   </form>
                 </div>
@@ -93,4 +93,4 @@ const Deposit = () => {
   );
 };
 
-export default Deposit;
+export default SendEth;

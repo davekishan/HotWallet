@@ -4,6 +4,9 @@ import { Navbar } from "../component/Navbar";
 import img from "../src/assets/about.png"
 import { Footer } from "./footer";
 const About = () => {
+
+
+
   return (
     <>
     <Navbar/>

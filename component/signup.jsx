@@ -37,7 +37,7 @@ export const Signup = () => {
             setotppage(true)
         }
         else if (response.data == false) {
-            toast.error(data.message)
+            toast.error(response.data.message)
 
         }
 

@@ -42,6 +42,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     {/* <Navbar /> */}
     <RouterProvider router={router} />
-    <Footer />
+   
   </React.StrictMode>
 );

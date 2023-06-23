@@ -3,17 +3,17 @@ import { Navbar } from "../component/Navbar";
 import { useNavigate } from "react-router-dom";
 import web3  from "web3"
 import { ethers } from 'ethers';
+import { Footer } from "../component/footer";
 
 
 export const Home = () => {
   const [loader, setloader] = useState(false);
   const [address, setAddress] = useState(false);
-
+  const [balance,setbalance]=useState();
   const navigate = useNavigate();
 
   useEffect(() => {
     setloader(true);
-   console.log("Home use Effect");
     fetch("/api/login/checksession")
       .then((response) => response.json())
       .then((data) => {
@@ -29,29 +29,33 @@ export const Home = () => {
 
   }, []);
 
-  const createwallet =async () => {
-    const response= await fetch("/api/wallet/createwallet")
-      // .then((response) => response.json())
-      console.log(response);
-      console.log("hello");
+  // const createwallet =async () => {
+  //   const response= await fetch("/api/wallet/createwallet")
+  //     // .then((response) => response.json())
+  //     console.log(response);
+  //     console.log("hello");
 
+  // };
+
+  const createwallet = () => {
+    fetch("/api/wallet/createwallet")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          console.log("Success");
+          setloader(false);
+          setAddress(data)
+          navigate("/home");
+        } else {
+          console.log("api not working ");
+          navigate("/");
+        }
+      });
   };
 
-  // const createwallet = () => {
-  //   fetch("/api/wallet/createwallet")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       if (data.success) {
-  //         console.log("Success");
-  //         setloader(false);
-  //         setAddress(data)
-  //         navigate("/home");
-  //       } else {
-  //         console.log("api not working ");
-  //         navigate("/");
-  //       }
-  //     });
-  // };
+  const getbalance=()=>{
+    
+  }
 
   return (
     <div>
@@ -86,6 +90,7 @@ export const Home = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

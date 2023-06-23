@@ -1,13 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import { Navbar } from "./Navbar";
+import { Footer } from "./footer";
 
 const SendEth = () => {
   const [sendAmount, setsendAmount] = useState("");
   const [loader, setloader] = useState(false);
-
-
-
+  const [account,setaccount]=useState();
+  const [value,setvalue]=useState();
 
   const validateSendAmount = (event) => {
     let inputValue = event.target.value;
@@ -23,11 +23,20 @@ const SendEth = () => {
       event.target.setCustomValidity("");
     }
 
-    setsendAmount(inputValue);
+    setvalue(inputValue);
   };
 
   const sendeth = () => {
-    fetch("/api/wallet/sendeth")
+    fetch("/api/wallet/sendeth",{
+      method: 'post',
+      body: JSON.stringify({
+        account: account,
+        value: value
+      }),
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
@@ -62,6 +71,7 @@ const SendEth = () => {
                         placeholder="Enter Wallet Address"
                         required
                         className="form-control"
+                        onChange={(e) => { setaccount(e.target.value) }} value={account}
                       />
                     </div>
                     <div className="form-group">
@@ -71,8 +81,8 @@ const SendEth = () => {
                         placeholder="Enter Amount in ETH"
                         required
                         className="form-control"
-                        value={sendAmount}
-                        onChange={validateSendAmount}
+                        value={value}
+                        onChange={(e) => { setvalue(e.target.value) }}
                       />
                     </div>
 
@@ -89,6 +99,7 @@ const SendEth = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

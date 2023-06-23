@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar } from "../component/Navbar";
 
 import img from "../src/assets/about.png"
+import { Footer } from "./footer";
 const About = () => {
   return (
     <>
@@ -32,7 +33,7 @@ const About = () => {
         </div>
       </div>
       
-        <footer/>
+        <Footer/>
     </>
   );
 };

@@ -10,5 +10,12 @@ export default defineConfig({
       
     }
     // hello
+  },
+  define: {
+    'process': {
+      env: {
+        NODE_DEBUG: false
+      }
+    }
   }
 })

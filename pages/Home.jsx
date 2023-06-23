@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Navbar } from "../component/Navbar";
 import { useNavigate } from "react-router-dom";
+import web3  from "web3"
+import { ethers } from 'ethers';
+
 
 export const Home = () => {
   const [loader, setloader] = useState(false);
@@ -10,10 +13,11 @@ export const Home = () => {
 
   useEffect(() => {
     setloader(true);
-
+   console.log("Home use Effect");
     fetch("/api/login/checksession")
       .then((response) => response.json())
       .then((data) => {
+        console.log("Fetch api");
         if (data.success) {
           setloader(false);
           navigate("/home");
@@ -22,6 +26,7 @@ export const Home = () => {
         }
       });
     setloader(false);
+
   }, []);
 
   const createwallet =async () => {
@@ -51,7 +56,7 @@ export const Home = () => {
   return (
     <div>
       <div>
-        <Navbar />
+        <Navbar balance={balance}/>
       </div>
 
       <div className="text-center">

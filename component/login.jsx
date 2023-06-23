@@ -16,7 +16,7 @@ export const Login = () => {
     
     useEffect(() => {
         setloader(true)
-    
+        console.log("This is login useeffect");
         fetch('/api/login/checksession').then(response => response.json())
           .then((data) => {
             if (data.success) {

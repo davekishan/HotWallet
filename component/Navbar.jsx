@@ -61,7 +61,7 @@ export const Navbar = () => {
 
           </div>
         </div>
-        <h5 className='navbar-brand'><div>{address}</div> Blanace:{balance} </h5>
+        <h5 className='navbar-brand'><div>WalletAddress: {address}</div> Balance: {balance} </h5>
         <button className='btn btn-success mx-5' onClick={logout}>Logout</button>
       </nav>
       <ToastContainer />

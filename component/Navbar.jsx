@@ -3,10 +3,32 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-export const Navbar = ({balance}) => {
+export const Navbar = () => {
   const navigate=useNavigate();
   const [loader, setloader] = useState(false);
-  
+  const [balance,setbalance]=useState();
+  const [address, setAddress] = useState(false);
+
+
+  useEffect(()=>{
+    setloader(true)
+    getbalance();
+    setloader(false)
+  },[])
+  const getbalance = async () => {
+    fetch("/api/wallet/getinfo")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          setbalance(data.balance)
+          setAddress(data.address)
+        } else {
+          alert("Coudn't Find Account");
+          
+        }
+      });
+
+  }
 
   const logout=()=>{
     fetch('/api/login/logout').then(response => response.json())
@@ -39,7 +61,7 @@ export const Navbar = ({balance}) => {
 
           </div>
         </div>
-        <h3 className='nav-item nav-link'>Blanace: </h3>
+        <h5 className='navbar-brand'><div>{address}</div> Blanace:{balance} </h5>
         <button className='btn btn-success mx-5' onClick={logout}>Logout</button>
       </nav>
       <ToastContainer />

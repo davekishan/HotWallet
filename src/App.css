@@ -359,3 +359,9 @@ input[type="submit"]:active
     transform: rotate(360deg);
   }
 }
+
+.copy-button{
+  height: 28px;
+  background-color: #000;
+  width: 22px;
+}

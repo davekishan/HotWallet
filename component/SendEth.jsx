@@ -94,7 +94,7 @@ const SendEth = () => {
                     <button
                       type="button"
                       className="subscribe btn btn-success btn-block  shadow-sm"
-                      onClick={sendeth} >
+                      onClick={sendeth} style={{marginLeft:"250px"}}>
                       Send ETH
                     </button>
                   </form>

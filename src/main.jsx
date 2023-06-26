@@ -2,7 +2,6 @@ import React from "react";
 import "./index.css";
 import App from "./App.jsx";
 import ReactDOM from "react-dom/client";
-// import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Login } from "../component/login.jsx";
 import { SignupPage } from "../pages/SignupPage.jsx";
 import { Home } from "../pages/Home.jsx";
@@ -15,46 +14,47 @@ import { Navbar } from './../component/Navbar';
 import { BrowserRouter, Route, Routes} from "react-router-dom";
 
 
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <>
-    <div>
-          <BrowserRouter>
-            <Navbar/>
+      <div>
+            <BrowserRouter>
+              <Navbar/>
 
-            <Routes>
-              <Route
-                exact path="/"
-                element={<Login/>}
-              ></Route>
-              <Route
-                exact path="/signup"
-                element={<SignupPage/>}
-              ></Route>
-              <Route
-                exact path="/home"
-                element={<Home/>}
-              ></Route>
-              <Route
-                exact path="/otp"
-                element={<OtpPage/>}
-              ></Route>
-              <Route
-                exact path="/about"
-                element={<About/>}
-              ></Route>
-              <Route
-                exact path="/sendeth"
-                element={<SendEth/>}
-              ></Route>
-              <Route
-                exact path="/loader"
-                element={<Loader/>}
-              ></Route>
-            </Routes>
-          </BrowserRouter>
-        </div>
-        <Footer/>
+              <Routes>
+                <Route
+                  exact path="/"
+                  element={<Login/>}
+                ></Route>
+                <Route
+                  exact path="/signup"
+                  element={<SignupPage/>}
+                ></Route>
+                <Route
+                  exact path="/home"
+                  element={<Home/>}
+                ></Route>
+                <Route
+                  exact path="/otp"
+                  element={<OtpPage/>}
+                ></Route>
+                <Route
+                  exact path="/about"
+                  element={<About/>}
+                ></Route>
+                <Route
+                  exact path="/sendeth"
+                  element={<SendEth/>}
+                ></Route>
+                <Route
+                  exact path="/loader"
+                  element={<Loader/>}
+                ></Route>
+              </Routes>
+            </BrowserRouter>
+          </div>
+          <Footer/>
   </>
   </React.StrictMode>
 );

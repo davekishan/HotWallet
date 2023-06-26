@@ -222,6 +222,12 @@ input[type="submit"]:active
   align-self: center;
 }
 
+.navbar-dark{
+  --bs-navbar-hover-color: rgb(25 135 43);
+  --bs-navbar-brand-hover-color: #19872b;
+}
+
+
 .input-otp {
   position: relative;
   height: 2.5em;

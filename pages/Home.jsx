@@ -9,6 +9,7 @@ import { Loader } from "../component/Loader";
 
 export const Home = () => {
   const [loader, setloader] = useState(true);
+  const [history, sethistory] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,9 +24,21 @@ export const Home = () => {
           navigate("/");
         }
       });
+    gethistory()
     setloader(false);
 
   }, []);
+
+  const gethistory = () => {
+    fetch("/api/wallet/gethistory")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          console.log(data);
+          sethistory(data.history)
+        }
+      });
+  }
 
 
   const createwallet = () => {
@@ -48,11 +61,14 @@ export const Home = () => {
   return (
     <div>
       <div>
-        <Navbar/>
+        <Navbar />
       </div>
 
       <div className="text-center">
         <div className="container py-5">
+
+
+
           <h1 className="text-center" style={{ color: "white" }}>
             Create Wallet
           </h1>
@@ -76,10 +92,14 @@ export const Home = () => {
               </div>
             </div>
           </div>
+
+        <div>
+         
+        </div>
         </div>
       </div>
       {
-       loader && <Loader/>
+        loader && <Loader />
 
       }
       <Footer />

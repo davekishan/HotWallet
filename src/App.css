@@ -372,3 +372,9 @@ input[type="submit"]:active
   }
 }
 
+
+.copy-button{
+  height: 28px;
+  background-color: #000;
+  width: 22px;
+}

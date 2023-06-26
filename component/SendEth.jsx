@@ -46,10 +46,11 @@ const SendEth = () => {
         if (data.success) {
           console.log("Success");
           setloader(false);
-          navigate("/");
+          location.reload()
         } else {
+          location.reload()
           console.log("api not ");
-          navigate("/");
+         
         }
       });
   };
@@ -81,7 +82,7 @@ const SendEth = () => {
                     <div className="form-group">
                       <input
                         style={{ margin: "10px" }}
-                        type="text"
+                        type="Number"
                         placeholder="Enter Amount in ETH"
                         required
                         className="form-control"

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import web3 from "web3"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import img from "../src/assets/pngwing.com.png"
 
 export const Navbar = () => {
   const navigate=useNavigate();
@@ -20,8 +23,9 @@ export const Navbar = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          setbalance(data.balance)
+          setbalance(web3.utils.fromWei(data?.balance, 'ether'))
           setAddress(data.address)
+        
         } else {
           alert("Coudn't Find Account");
           
@@ -62,7 +66,7 @@ export const Navbar = () => {
 
           </div>
         </div>
-        <h5 className='navbar-brand'><div>WalletAddress: {address}</div> Balance: {balance} </h5>
+        <h5 className='navbar-brand'><div style={{color:"green"}}>{address} <button style={{}} onClick={() =>  navigator.clipboard.writeText(address)}><img src={img} alt="" className='copy-button'/></button></div> Blanace : {balance} ETH </h5>
         <button className='btn btn-success mx-5' onClick={logout}>Logout</button>
       </nav>
       <ToastContainer />

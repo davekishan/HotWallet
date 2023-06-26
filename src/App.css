@@ -346,6 +346,12 @@ input[type="submit"]:active
   height: 80px;
   
 }
+.eXRxxr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 100px;
+}
 .lds-dual-ring:after {
   content: " ";
   display: block;
@@ -365,3 +371,4 @@ input[type="submit"]:active
     transform: rotate(360deg);
   }
 }
+

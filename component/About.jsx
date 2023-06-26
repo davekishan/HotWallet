@@ -1,15 +1,13 @@
 import React from "react";
-import { Navbar } from "../component/Navbar";
-
 import img from "../src/assets/about.png"
-import { Footer } from "./footer";
+
 const About = () => {
 
 
 
   return (
     <>
-    <Navbar/>
+   
       <div className="aboutus">
         <div className="bg-white">
           <div className="container py-5">
@@ -36,7 +34,7 @@ const About = () => {
         </div>
       </div>
       
-        <Footer/>
+     
     </>
   );
 };

@@ -6,25 +6,18 @@ import web3 from "web3"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import img from "../src/assets/pngwing.com.png"
 
-export const Navbar = () => {
+export const Navbar = (props) => {
   const navigate=useNavigate();
   const [loader, setloader] = useState(false);
-  const [balance,setbalance]=useState();
-  const [address, setAddress] = useState(false);
 
-
-  useEffect(()=>{
-    setloader(true)
-    getbalance();
-    setloader(false)
-  },[])
-  const getbalance = async () => {
+  
+  const getBalance = async () => {
     fetch("/api/wallet/getinfo")
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
           setbalance(web3.utils.fromWei(data?.balance, 'ether'))
-          setAddress(data.address)
+          setaddress(data.address)
         
         } else {
           alert("Coudn't Find Account");
@@ -33,6 +26,7 @@ export const Navbar = () => {
       });
 
   }
+ 
 
   const logout=()=>{
     fetch('/api/login/logout').then(response => response.json())
@@ -66,7 +60,7 @@ export const Navbar = () => {
 
           </div>
         </div>
-        <h5 className='navbar-brand'><div style={{color:"green"}}>{address} <button style={{}} onClick={() =>  navigator.clipboard.writeText(address)}><img src={img} alt="" className='copy-button'/></button></div> Blanace : {balance} ETH </h5>
+        <h5 className='navbar-brand'><div style={{color:"green"}}>{props?.address} <button style={{}} onClick={() =>  navigator.clipboard.writeText(props?.address)}><img src={img} alt="" className='copy-button'/></button></div> Blanace : {props?.balance} ETH </h5>
         <button className='btn btn-success mx-5' onClick={logout}>Logout</button>
       </nav>
       <ToastContainer />

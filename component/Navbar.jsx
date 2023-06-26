@@ -5,27 +5,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import web3 from "web3"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import img from "../src/assets/pngwing.com.png"
+import { Getallac } from './getallac';
 
 export const Navbar = (props) => {
   const navigate=useNavigate();
   const [loader, setloader] = useState(false);
 
-  
-  const getBalance = async () => {
-    fetch("/api/wallet/getinfo")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          setbalance(web3.utils.fromWei(data?.balance, 'ether'))
-          setaddress(data.address)
-        
-        } else {
-          alert("Coudn't Find Account");
-          
-        }
-      });
-
-  }
  
 
   const logout=()=>{
@@ -60,7 +45,7 @@ export const Navbar = (props) => {
 
           </div>
         </div>
-        <h5 className='navbar-brand'><div style={{color:"green"}}>{props?.address} <button style={{}} onClick={() =>  navigator.clipboard.writeText(props?.address)}><img src={img} alt="" className='copy-button'/></button></div> Blanace : {props?.balance} ETH </h5>
+        <h5 className='navbar-brand'><div style={{color:"green"}}><Getallac accountchange={props.accountchange}/> <button style={{}} onClick={() =>  navigator.clipboard.writeText(props?.address)}><img src={img} alt="" className='copy-button'/></button></div> Blanace : {props?.balance} ETH </h5>
         <button className='btn btn-success mx-5' onClick={logout}>Logout</button>
       </nav>
       <ToastContainer />

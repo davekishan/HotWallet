@@ -5,25 +5,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import web3 from "web3"
 import img from "../src/assets/pngwing.com.png"
 
-export const Navbar = () => {
+export const Navbar = (props) => {
   const navigate=useNavigate();
   const [loader, setloader] = useState(false);
-  const [balance,setbalance]=useState();
-  const [address, setAddress] = useState(false);
 
-
-  useEffect(()=>{
-    setloader(true)
-    getbalance();
-    setloader(false)
-  },[])
-  const getbalance = async () => {
+  
+  const getBalance = async () => {
     fetch("/api/wallet/getinfo")
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
           setbalance(web3.utils.fromWei(data?.balance, 'ether'))
-          setAddress(data.address)
+          setaddress(data.address)
         
         } else {
           alert("Coudn't Find Account");
@@ -32,6 +25,7 @@ export const Navbar = () => {
       });
 
   }
+ 
 
   const logout=()=>{
     fetch('/api/login/logout').then(response => response.json())

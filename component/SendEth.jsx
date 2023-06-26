@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 import TransferHistory from "./TransactionHistory";
 const SendEth = () => {
@@ -28,8 +30,6 @@ const SendEth = () => {
     setvalue(inputValue);
   };
 
-  
-
   const sendeth = () => {
     fetch("/api/wallet/sendeth",{
       method: 'post',
@@ -44,12 +44,13 @@ const SendEth = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          console.log("Success");
+          toast.success(data.message)
+          setloader(false);
+          getBalance()
+        } else {
           setloader(false);
           location.reload()
-        } else {
-          location.reload()
-          console.log("api not ");
+          toast.error(data.message)
          
         }
       });
@@ -103,6 +104,8 @@ const SendEth = () => {
             </div>
           </div>
         </div>
+        <ToastContainer />
+
       </div>
       <TransferHistory/>
 

@@ -6,6 +6,7 @@ import { Loader } from "../component/Loader";
 export const Home = () => {
   const [loader, setloader] = useState(true);
   const [history, sethistory] = useState({});
+  
   const navigate = useNavigate();
   const [address,setAddress] = useState([]);
   useEffect(() => {
@@ -24,6 +25,7 @@ export const Home = () => {
     setloader(false);
 
   }, []);
+
 
   const gethistory = () => {
     fetch("/api/wallet/gethistory")
@@ -45,7 +47,6 @@ export const Home = () => {
         if (data.success) {
           console.log("Success");
           setloader(false);
-          setAddress(data)
           // navigate("/home");
         } else {
           console.log("api not working ");

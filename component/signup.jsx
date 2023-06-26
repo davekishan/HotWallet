@@ -16,7 +16,6 @@ export const Signup = () => {
 
     useEffect(() => {
 
-        console.log("signup effect");
         fetch('/api/login/checksession').then(response => response.json())
             .then((data) => {
                 if (data.success) {

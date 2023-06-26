@@ -2,7 +2,8 @@ import React from "react";
 import { Table } from "@web3uikit/core";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Web3 from "web3";
+import web3 from "web3"
+
 
 const TransferHistory = () => {
   const [data, setData] = useState({});
@@ -29,16 +30,16 @@ const TransferHistory = () => {
         Transection History 
       </div>
       <div>
-      
-     
-        {data?.result?.length > 0 && (
-          <Table 
+
+        {data?.result?.length > 0 && ( 
+          <Table
             pageSize={8}
             noPagination={false}
             style={{ width: "90vw" }}
             columnsConfig="16vw 18vw 18vw 18vw 16vw"
             data={data.result.map((e) => [
-              Web3.utils.fromWei(e.value, 'ether'),
+              `${web3.utils.fromWei(e.value, 'ether') } ETH`
+,
               //   (Number(e.value) / Number(`1e${e.decimals}`)).toFixed(3),
               `${e.from_address.slice(0, 5)}...${e.from_address.slice(38)}`,
               `${e.to_address.slice(0, 5)}...${e.to_address.slice(38)}`,

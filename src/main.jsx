@@ -11,6 +11,7 @@ import About from "./../component/About";
 import { Footer } from "../component/footer.jsx";
 import SendEth from "../component/SendEth.jsx";
 import { Loader } from "../component/Loader.jsx";
+import { Navbar } from "../component/Navbar.jsx";
 
 const router = createBrowserRouter([
   {
@@ -45,8 +46,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {/* <Navbar /> */}
-    <RouterProvider router={router} />
-   
+    <RouterProvider router={router} >
+    <Navbar/>
+      
+      </RouterProvider>
   </React.StrictMode>
 );

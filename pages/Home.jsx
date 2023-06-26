@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navbar } from "../component/Navbar";
 import { useNavigate } from "react-router-dom";
-import web3 from "web3"
-import { ethers } from 'ethers';
-import { Footer } from "../component/footer";
 import { Loader } from "../component/Loader";
 
 
@@ -61,7 +57,7 @@ export const Home = () => {
   return (
     <div>
       <div>
-        <Navbar />
+      
       </div>
 
       <div className="text-center">
@@ -102,7 +98,7 @@ export const Home = () => {
         loader && <Loader />
 
       }
-      <Footer />
+  
     </div>
   );
 };

@@ -1,16 +1,34 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Navbar } from "./Navbar";
-import { Footer } from "./footer";
-import TransferHistory from "./TransactionHistory";
 
+import TransferHistory from "./TransactionHistory";
 const SendEth = () => {
   const [sendAmount, setsendAmount] = useState("");
   const [loader, setloader] = useState(false);
   const [account,setaccount]=useState();
   const [value,setvalue]=useState();
-  const [data,setdata]=useState();
+  
 
+
+
+  const validateSendAmount = (event) => {
+    let inputValue = event.target.value;
+    // Remove any non-numeric characters except dot (.)
+    inputValue = inputValue.replace(/[^0-9.]/g, "");
+
+    // Check if the value is a valid float or integer
+    if (inputValue && !/^(\d+(\.\d+)?|\.\d+)$/.test(inputValue)) {
+      // If the value is invalid, display an error message
+      event.target.setCustomValidity("Please enter a valid number");
+    } else {
+      // Clear the error message
+      event.target.setCustomValidity("");
+    }
+
+    setvalue(inputValue);
+  };
+
+  
 
   const sendeth = () => {
     fetch("/api/wallet/sendeth",{
@@ -38,7 +56,7 @@ const SendEth = () => {
   };
   return (
     <>
-      <Navbar />
+
       
       <div className="container py-5">
         <h1 className="text-center" style={{ color: "white" }}>
@@ -86,8 +104,8 @@ const SendEth = () => {
           </div>
         </div>
       </div>
-      <TransferHistory />
-      <Footer/>
+      <TransferHistory/>
+
     </>
   );
 };

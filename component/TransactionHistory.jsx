@@ -1,71 +1,55 @@
-import React from 'react'
-import axios from 'axios'
-import { Reload } from "@web3uikit/icons";
+import React from "react";
 import { Table } from "@web3uikit/core";
-import { useEffect,useState } from 'react';
-import { Link } from 'react-router-dom';
-
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const TransferHistory = () => {
-  const [data,setdata]=useState();
-    console.log("this is data",data);
-    
- 
+  const [data, setData] = useState({});
+  const navigate = useNavigate();
+  useEffect(() => {
+    gethistory();
+  }, []);
+
+
   const gethistory = () => {
-      fetch("/api/wallet/gethistory")
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.success) {
-            console.log(data);
-            setdata(data.history)
-          }
-        });
-    }
+    fetch("/api/wallet/gethistory")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          setData(data.history);
+          console.log(data);
+        }
+      });
+  };
 
   return (
     <>
-    <div className="text-center" style={{color:"red"}}>Transection History
-        {/* Transfer History <Reload onClick={getTokenTransfers} /> */}
-      {/* { wallet ? (data.data.length > 0 ? "" :
-        <div className="text-center">No Transections History Found</div>) : <div className="text-center">Enter Your Wallet Address</div>} */}
+      <div className="text-center" style={{color:"forestgreen",fontSize:"xx-large",paddingBottom:"20px"}}>
+        Transection History 
       </div>
       <div>
 
-        {data?.history?.length > 0 && ( 
+        {data.result.length > 0 && ( 
           <Table
             pageSize={8}
             noPagination={false}
             style={{ width: "90vw" }}
             columnsConfig="16vw 18vw 18vw 18vw 16vw"
-            Tdata={data.data.map((e) => [
-              e.symbol,
-              (Number(e.value) / Number(`1e${e.decimals}`)).toFixed(3),
-              `${e.from_address.slice(0, 4)}...${e.from_address.slice(38)}`,
-              `${e.to_address.slice(0, 4)}...${e.to_address.slice(38)}`,
-              e.block_timestamp.slice(0,10),
-                // chain === "0x1" ? (
-                //     <Link
-                //     to={`https://etherscan.io/tx/${e.transaction_hash}`}
-                //     target="_blank"
-                //     rel="noopener noreferrer"
-                //   >{`${e.transaction_hash.slice(0, 6)}...${e.transaction_hash.slice(60)}`}
-                //   </Link>
-                // ) :
-                 chain === "0xaa36a7" ? (
-                  <Link
-                    to={`hhttps://sepolia.etherscan.io/tx/${e.transaction_hash}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {`${e.transaction_hash.slice(0, 6)}...${e.transaction_hash.slice(60)}`}
-                  </Link>
-
-                ) : ( 
-                  null  
-                )
+            data={data.result.map((e) => [
+              e.value,
+              //   (Number(e.value) / Number(`1e${e.decimals}`)).toFixed(3),
+              `${e.from_address.slice(0, 5)}...${e.from_address.slice(38)}`,
+              `${e.to_address.slice(0, 5)}...${e.to_address.slice(38)}`,
+              e.block_timestamp.slice(0, 10),
+              <Link
+                to={`https://sepolia.etherscan.io//tx/${e.hash}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {`${e.hash.slice(0, 6)}...${e.hash.slice(60)}`}
+              </Link>,
             ])}
             header={[
-              <span>Token</span>,
               <span>Amount</span>,
               <span>From</span>,
               <span>To</span>,
@@ -73,11 +57,10 @@ const TransferHistory = () => {
               <span>Transection Hash</span>,
             ]}
           />
-        )} 
+        )}
       </div>
-  </>
-
+    </>
   );
-}
+};
 
-export default TransferHistory
+export default TransferHistory;

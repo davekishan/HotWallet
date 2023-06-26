@@ -25,6 +25,10 @@ export const Login = () => {
               setloader(false)
               navigate('/home')
             }
+            else{
+              navigate('/')
+
+            }
           })
         setloader(false)
       }, [])

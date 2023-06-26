@@ -14,6 +14,9 @@ import { Loader } from "../component/Loader.jsx";
 import { Navbar } from './../component/Navbar';
 import { useEffect } from 'react'
 import web3 from "web3"
+import { Getallac } from '../component/getallac'
+import { ethers } from "ethers";
+
 
 
 function App() {
@@ -21,10 +24,10 @@ function App() {
   const [balance,setbalance]=useState("")
 
   useEffect(()=>{
-    getBalance();
+    getbalance();
   },[])
 
-  const getBalance = async () => {
+  const getbalance = async () => {
     fetch("/api/wallet/getinfo")
       .then((response) => response.json())
       .then((data) => {
@@ -38,6 +41,15 @@ function App() {
         }
       });
 
+  }
+
+  const accountchange=async(add)=>{
+    setaddress(add)
+    const network = 'sepolia' // use rinkeby testnet
+    const provider =await ethers.getDefaultProvider(network)
+    const Balance=await provider.getBalance(add)
+    console.log(Balance);
+    setbalance(web3.utils.fromWei(Balance.toString(), 'ether'))
   }
 
   return (
@@ -55,7 +67,7 @@ function App() {
             ></Route>
 
           </Routes>
-          <Navbar address={address} balance={balance}/>
+          <Navbar address={address} balance={balance} accountchange={accountchange}/>
           <Routes>
 
 
@@ -74,11 +86,15 @@ function App() {
             ></Route>
             <Route
               exact path="/sendeth"
-              element={<SendEth getBalance={getBalance}/>}
+              element={<SendEth getbalance={getbalance}/>}
             ></Route>
             <Route
               exact path="/loader"
               element={<Loader />}
+            ></Route>
+             <Route
+              exact path="/getall"
+              element={<Getallac accountchange={accountchange}/>}
             ></Route>
           </Routes>
           <Footer />

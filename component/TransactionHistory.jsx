@@ -6,23 +6,21 @@ import { useEffect,useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
-const TransferHistory = (data) => {
+const TransferHistory = () => {
+  const [data,setdata]=useState();
     console.log("this is data",data);
-    // const [transfers, setTransfers] = useState([]);
-
-      
-    //  const getTokenTransfers = async (email) => {
-        
-    //    setTransfers("");
-    //     const response = await axios.get("http://localhost:3000/gethistory", {
-     
-    //       });
-          
-    //       if (response.data) {
-    //         setTransfers(response.data);
-    //         console.log("THis is response:",response.data);
-    //       }
-    // }
+    
+ 
+  const gethistory = () => {
+      fetch("/api/wallet/gethistory")
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            console.log(data);
+            setdata(data.history)
+          }
+        });
+    }
 
   return (
     <>
@@ -33,7 +31,7 @@ const TransferHistory = (data) => {
       </div>
       <div>
 
-        {data.data.length > 0 && ( 
+        {data?.history?.length > 0 && ( 
           <Table
             pageSize={8}
             noPagination={false}

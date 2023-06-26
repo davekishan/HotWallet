@@ -10,7 +10,7 @@ export const Home = () => {
   const [history, sethistory] = useState({});
   
   const navigate = useNavigate();
-
+  const [address,setAddress] = useState([]);
   useEffect(() => {
     setloader(true);
     fetch("/api/login/checksession")
@@ -38,8 +38,9 @@ export const Home = () => {
           sethistory(data.history)
         }
       });
-  }
-
+  } 
+  console.log("address",address)
+  
 
   const createwallet = () => {
     fetch("/api/wallet/createwallet")
@@ -86,9 +87,9 @@ export const Home = () => {
                       >
                         Create Wallet
                       </button>
-                      <p>Here is your new hotwallet:</p>
+                      <p>Here is your new hotwallet:{address}</p>
                     </form>
-                  </div>
+                  </div>  
                 </div>
               </div>
             </div>

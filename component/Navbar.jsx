@@ -3,7 +3,6 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import web3 from "web3"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import img from "../src/assets/pngwing.com.png"
 import { Getallac } from './getallac';
 

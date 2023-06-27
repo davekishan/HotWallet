@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Loader = () => {
   return (
-    <div>
+    <div className='loader-loader'>
         <div className="lds-dual-ring"></div>
     </div>
   )

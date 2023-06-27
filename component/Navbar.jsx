@@ -6,7 +6,7 @@ import web3 from "web3"
 import img from "../src/assets/pngwing.com.png"
 import { Getallac } from './getallac';
 
-export const Navbar = ({address,balance,accountchange,HistoryFun}) => {
+export const Navbar = ({address,getbalance,balance,accountchange,HistoryFun}) => {
   const navigate=useNavigate();
   const [loader, setloader] = useState(false);
 

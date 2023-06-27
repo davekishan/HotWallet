@@ -9,8 +9,6 @@ import { Getallac } from './getallac';
 export const Navbar = ({address,balance,accountchange,HistoryFun}) => {
   const navigate=useNavigate();
   const [loader, setloader] = useState(false);
-  const [balance, setbalance] = useState();
-  const [address, setAddress] = useState(false);
 
   useEffect(() => {
     setloader(true);

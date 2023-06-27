@@ -16,40 +16,51 @@ import { useEffect } from 'react'
 import web3 from "web3"
 import { Getallac } from '../component/getallac'
 import { ethers } from "ethers";
+import TransferHistory from '../component/TransactionHistory'
+
 
 
 
 function App() {
   const [address,setaddress]=useState("")
   const [balance,setbalance]=useState("")
+  const [history,sethistory]=useState({});
 
-  useEffect(()=>{
-    getbalance();
-  },[])
 
-  const getbalance = async () => {
-    fetch("/api/wallet/getinfo")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          setbalance(web3.utils.fromWei(data?.balance, 'ether'))
-          setaddress(data.address)
-        
-        } else {
-          alert("Coudn't Find Account");
-          
-        }
-      });
+  const getbalance = async (address) => {
+    const network = 'sepolia' // use rinkeby testnet
+    const provider =await ethers.getDefaultProvider(network)
+    const Balance=await provider.getBalance(address)
+    console.log(Balance);
+    setbalance(web3.utils.fromWei(Balance.toString(), 'ether'))
 
   }
 
-  const accountchange=async(add)=>{
+  const HistoryFun = () => {
+    fetch("/api/wallet/gethistory/"+address)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          sethistory(data.history);
+          console.log("After History get")
+          console.log(history)
+          return 200;
+        }
+      });
+
+
+  };
+
+  const accountchange = async(add)=>{
+  
     setaddress(add)
     const network = 'sepolia' // use rinkeby testnet
     const provider =await ethers.getDefaultProvider(network)
     const Balance=await provider.getBalance(add)
     console.log(Balance);
     setbalance(web3.utils.fromWei(Balance.toString(), 'ether'))
+
+    return 200
   }
 
   return (
@@ -67,7 +78,7 @@ function App() {
             ></Route>
 
           </Routes>
-          <Navbar address={address} balance={balance} accountchange={accountchange}/>
+          <Navbar address={address} balance={balance} accountchange={accountchange} HistoryFun={HistoryFun}/>
           <Routes>
 
 
@@ -86,15 +97,11 @@ function App() {
             ></Route>
             <Route
               exact path="/sendeth"
-              element={<SendEth getbalance={getbalance}/>}
+              element={<SendEth getbalance={getbalance} address={address} HistoryFun={HistoryFun} history={history}/>}
             ></Route>
             <Route
               exact path="/loader"
               element={<Loader />}
-            ></Route>
-             <Route
-              exact path="/getall"
-              element={<Getallac accountchange={accountchange}/>}
             ></Route>
           </Routes>
           <Footer />

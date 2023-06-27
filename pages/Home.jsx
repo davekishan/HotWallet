@@ -6,26 +6,25 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 export const Home = () => {
-  const [loader, setloader] = useState(true);
+  const [loader, setloader] = useState(false);
   const [history, sethistory] = useState({});
-  
+
   const navigate = useNavigate();
-  const [address,setAddress] = useState([]);
+  const [address, setAddress] = useState([]);
   useEffect(() => {
     setloader(true);
     fetch("/api/login/checksession")
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          setloader(false);
           navigate("/home");
         } else {
+          
           navigate("/");
         }
       });
     gethistory()
-    setloader(false);
-
+    setloader(false)
   }, []);
 
 
@@ -38,9 +37,9 @@ export const Home = () => {
           sethistory(data.history)
         }
       });
-  } 
-  console.log("address",address)
-  
+  }
+  console.log("address", address)
+
 
   const createwallet = () => {
     fetch("/api/wallet/createwallet")
@@ -62,10 +61,6 @@ export const Home = () => {
 
   return (
     <div>
-      <div>
-      
-      </div>
-
       <div className="text-center">
         <div className="container py-5">
 
@@ -89,22 +84,22 @@ export const Home = () => {
                       </button>
                       <p>Here is your new hotwallet:{address}</p>
                     </form>
-                  </div>  
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <div>
 
-        <div>
-         
+          </div>
         </div>
-        </div>
-      </div>
       {
         loader && <Loader />
 
       }
-  
+      </div>
+
+
     </div>
   );
 };

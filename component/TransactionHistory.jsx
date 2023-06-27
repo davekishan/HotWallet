@@ -5,24 +5,29 @@ import { Link, useNavigate } from "react-router-dom";
 import web3 from "web3"
 
 
-const TransferHistory = ({history}) => {
+const TransferHistory = ({address}) => {
   const [historyState, setHistoryState] = useState(history);
 
-  useEffect(() => {
-    console.log("history");
-    console.log(historyState);
-  }, [historyState]);
-
-  useEffect(()=>{
-    setHistoryState(history)
-  },[history])
-
-
   
-  useEffect(() => {
-    setHistoryState(history); // Update historyState when history changes
-  }, [history]);
+  useEffect(()=>{
+    HistoryFun()
+  },[address])
 
+
+  const HistoryFun = () => {
+    fetch("/api/wallet/gethistory/"+address)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          setHistoryState(data.history);
+          console.log("After History get")
+          console.log(data.hostory)
+          return 200;
+        }
+      });
+
+
+  };
 
   return (
     <>
@@ -31,13 +36,14 @@ const TransferHistory = ({history}) => {
       </div>
       <div>
 
+        {console.log(historyState.result)}
         {historyState?.result?.length > 0 && ( 
           <Table
             pageSize={8}
             noPagination={false}
             style={{ width: "90vw" }}
             columnsConfig="16vw 18vw 18vw 18vw 16vw"
-            historyState={historyState.result.map((e) => [
+            data={historyState.result.map((e) => [
               `${web3.utils.fromWei(e.value, 'ether') } ETH`
 ,
               //   (Number(e.value) / Number(`1e${e.decimals}`)).toFixed(3),

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Loader } from "../component/Loader";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export const Home = () => {
@@ -46,11 +48,13 @@ export const Home = () => {
       .then((data) => {
         if (data.success) {
           console.log("Success");
+          toast.success('Created Successfully')
+
           setloader(false);
-          // navigate("/home");
         } else {
           console.log("api not working ");
-          navigate("/");
+          toast.error("Something Went Wrong")
+
         }
       });
   };

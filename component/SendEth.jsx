@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 import TransferHistory from "./TransactionHistory";
-const SendEth = () => {
+const SendEth = ({getbalance}) => {
   const [sendAmount, setsendAmount] = useState("");
   const [loader, setloader] = useState(false);
   const [account,setaccount]=useState();
@@ -46,7 +46,7 @@ const SendEth = () => {
         if (data.success) {
           toast.success(data.message)
           setloader(false);
-          getBalance()
+          getbalance()
         } else {
           setloader(false);
           location.reload()

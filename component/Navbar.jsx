@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import web3 from "web3";
-import img from "../src/assets/pngwing.com.png";
+import 'react-toastify/dist/ReactToastify.css';
+import web3 from "web3"
+import img from "../src/assets/pngwing.com.png"
+import { Getallac } from './getallac';
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -17,34 +18,23 @@ export const Navbar = () => {
     setloader(false);
   }, []);
 
+ 
+
+  const logout=()=>{
+    fetch('/api/login/logout').then(response => response.json())
+    .then((data) => {
+      
+      if (data.success) {
+        toast.success('Loged Out')
+        setloader(false)
+        navigate('/')
+      }else{
+        toast.error('Failed')
+      }
+    })
+
+  }
   
-  const getbalance = async () => {
-    fetch("/api/wallet/getinfo")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          setbalance(web3.utils.fromWei(data?.balance, "ether"));
-          setAddress(data.address);
-        } else {
-          alert("Coudn't Find Account");
-        }
-      });
-  };
-
-
-  const logout = () => {
-    fetch("/api/login/logout")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          toast.success("Logged Out");
-          setloader(false);
-          navigate("/");
-        } else {
-          toast.error("Failed");
-        }
-      });
-  };
 
   return (
     <div>
@@ -76,21 +66,8 @@ export const Navbar = () => {
             </NavLink>
           </div>
         </div>
-        <h5 className="navbar-brand">
-          <div style={{ color: "green" }}>
-            Address: {address}{" "}
-            <button
-              style={{}}
-              onClick={() => navigator.clipboard.writeText(address)}
-            >
-              <img src={img} alt="" className="copy-button" />
-            </button>
-          </div>{" "}
-          Balance : {balance} ETH{" "}
-        </h5>
-        <button className="btn btn-success mx-5" onClick={logout}>
-          Logout
-        </button>
+        <h5 className='navbar-brand'><div style={{color:"green"}}><Getallac accountchange={props.accountchange}/> <button style={{}} onClick={() =>  navigator.clipboard.writeText(props?.address)}><img src={img} alt="" className='copy-button'/></button></div> Blanace : {props?.balance} ETH </h5>
+        <button className='btn btn-success mx-5' onClick={logout}>Logout</button>
       </nav>
       <ToastContainer />
     </div>

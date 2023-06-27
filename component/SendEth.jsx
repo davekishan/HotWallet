@@ -4,38 +4,22 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 import TransferHistory from "./TransactionHistory";
-const SendEth = ({getbalance}) => {
-  const [sendAmount, setsendAmount] = useState("");
+import { Loader } from "./Loader";
+
+const SendEth = ({getbalance,address,HistoryFun,history}) => {
   const [loader, setloader] = useState(false);
   const [account,setaccount]=useState();
   const [value,setvalue]=useState();
   
 
-
-
-  const validateSendAmount = (event) => {
-    let inputValue = event.target.value;
-    // Remove any non-numeric characters except dot (.)
-    inputValue = inputValue.replace(/[^0-9.]/g, "");
-
-    // Check if the value is a valid float or integer
-    if (inputValue && !/^(\d+(\.\d+)?|\.\d+)$/.test(inputValue)) {
-      // If the value is invalid, display an error message
-      event.target.setCustomValidity("Please enter a valid number");
-    } else {
-      // Clear the error message
-      event.target.setCustomValidity("");
-    }
-
-    setvalue(inputValue);
-  };
-
   const sendeth = () => {
+    setloader(true)
     fetch("/api/wallet/sendeth",{
       method: 'post',
       body: JSON.stringify({
         account: account,
-        value: value
+        value: value,
+        from:address
       }),
       headers: {
         'Content-type': 'application/json'
@@ -45,8 +29,9 @@ const SendEth = ({getbalance}) => {
       .then((data) => {
         if (data.success) {
           toast.success(data.message)
+          HistoryFun(address)
+          getbalance(address)
           setloader(false);
-          getbalance()
         } else {
           setloader(false);
           location.reload()
@@ -107,8 +92,10 @@ const SendEth = ({getbalance}) => {
         <ToastContainer />
 
       </div>
-      <TransferHistory/>
-
+      <TransferHistory history={history}/>
+      {
+        loader && <Loader/>
+      }
     </>
   );
 };

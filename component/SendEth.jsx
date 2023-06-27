@@ -92,7 +92,7 @@ const SendEth = ({getbalance,address,HistoryFun,history}) => {
         <ToastContainer />
 
       </div>
-      <TransferHistory history={history}/>
+      <TransferHistory address={address}/>
       {
         loader && <Loader/>
       }

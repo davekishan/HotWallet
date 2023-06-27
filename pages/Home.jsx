@@ -17,6 +17,7 @@ export const Home = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
+          setloader(false)
           navigate("/home");
         } else {
           

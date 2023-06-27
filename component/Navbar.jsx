@@ -6,11 +6,9 @@ import web3 from "web3"
 import img from "../src/assets/pngwing.com.png"
 import { Getallac } from './getallac';
 
-export const Navbar = (props) => {
+export const Navbar = ({address,balance,accountchange,HistoryFun}) => {
   const navigate=useNavigate();
   const [loader, setloader] = useState(false);
-
- 
 
   const logout=()=>{
     fetch('/api/login/logout').then(response => response.json())
@@ -44,7 +42,7 @@ export const Navbar = (props) => {
 
           </div>
         </div>
-        <h5 className='navbar-brand'><div style={{color:"green"}}><Getallac accountchange={props.accountchange}/> <button style={{}} onClick={() =>  navigator.clipboard.writeText(props?.address)}><img src={img} alt="" className='copy-button'/></button></div> Blanace : {props?.balance} ETH </h5>
+        <h5 className='navbar-brand'><div style={{color:"green"}}><Getallac accountchange={accountchange} HistoryFun={HistoryFun}/> <button style={{}} onClick={() =>  navigator.clipboard.writeText(address)}><img src={img} alt="" className='copy-button'/></button></div> Blanace : {balance} ETH </h5>
         <button className='btn btn-success mx-5' onClick={logout}>Logout</button>
       </nav>
       <ToastContainer />

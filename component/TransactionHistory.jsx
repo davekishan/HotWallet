@@ -5,24 +5,24 @@ import { Link, useNavigate } from "react-router-dom";
 import web3 from "web3"
 
 
-const TransferHistory = () => {
-  const [data, setData] = useState({});
-  const navigate = useNavigate();
+const TransferHistory = ({history}) => {
+  const [historyState, setHistoryState] = useState(history);
+
   useEffect(() => {
-    gethistory();
-  }, []);
+    console.log("history");
+    console.log(historyState);
+  }, [historyState]);
+
+  useEffect(()=>{
+    setHistoryState(history)
+  },[history])
 
 
-  const gethistory = () => {
-    fetch("/api/wallet/gethistory")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          setData(data.history);
-          console.log(data);
-        }
-      });
-  };
+  
+  useEffect(() => {
+    setHistoryState(history); // Update historyState when history changes
+  }, [history]);
+
 
   return (
     <>
@@ -31,13 +31,13 @@ const TransferHistory = () => {
       </div>
       <div>
 
-        {data?.result?.length > 0 && ( 
+        {historyState?.result?.length > 0 && ( 
           <Table
             pageSize={8}
             noPagination={false}
             style={{ width: "90vw" }}
             columnsConfig="16vw 18vw 18vw 18vw 16vw"
-            data={data.result.map((e) => [
+            historyState={historyState.result.map((e) => [
               `${web3.utils.fromWei(e.value, 'ether') } ETH`
 ,
               //   (Number(e.value) / Number(`1e${e.decimals}`)).toFixed(3),

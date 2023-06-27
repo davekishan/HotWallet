@@ -36,20 +36,6 @@ function App() {
 
   }
 
-  const HistoryFun = () => {
-    fetch("/api/wallet/gethistory/"+address)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          sethistory(data.history);
-          console.log("After History get")
-          console.log(history)
-          return 200;
-        }
-      });
-
-
-  };
 
   const accountchange = async(add)=>{
   
@@ -78,7 +64,7 @@ function App() {
             ></Route>
 
           </Routes>
-          <Navbar address={address} balance={balance} accountchange={accountchange} HistoryFun={HistoryFun}/>
+          <Navbar address={address} getbalance={getbalance} balance={balance} accountchange={accountchange}/>
           <Routes>
 
 
@@ -97,7 +83,7 @@ function App() {
             ></Route>
             <Route
               exact path="/sendeth"
-              element={<SendEth getbalance={getbalance} address={address} HistoryFun={HistoryFun} history={history}/>}
+              element={<SendEth getbalance={getbalance} address={address} history={history}/>}
             ></Route>
             <Route
               exact path="/loader"

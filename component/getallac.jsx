@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Loader } from './Loader';
 
-export const Getallac = ({accountchange,HistoryFun}) => {
+export const Getallac = ({accountchange}) => {
 
     useEffect(() => {
         getac()
@@ -13,7 +13,6 @@ export const Getallac = ({accountchange,HistoryFun}) => {
     const handleSelectChange = (event) => {
       setSelectedOption(event.target.value);
       accountchange(event.target.value);
-      HistoryFun(event.target.value)
     };
 
 

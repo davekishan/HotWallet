@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import TransferHistory from "./TransactionHistory";
 import { Loader } from "./Loader";
 
-const SendEth = ({address,historyState}) => {
+const SendEth = ({address,historyState,chain}) => {
   const [loader, setloader] = useState(false);
   const [account,setaccount]=useState();
   const [value,setvalue]=useState();
@@ -19,7 +19,8 @@ const SendEth = ({address,historyState}) => {
       body: JSON.stringify({
         account: account,
         value: value,
-        from:address
+        from:address,
+        chain:chain
       }),
       headers: {
         'Content-type': 'application/json'

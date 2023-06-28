@@ -397,3 +397,15 @@ input[type="submit"]:active
   background-color: #000;
   width: 22px;
 }
+
+.dropdown{
+  background-color: #212529;
+  color:#0f0;
+  margin-right: 5px;
+  border-radius:9px
+
+}
+
+.option-dropdown{
+  border-radius: 10px;
+}

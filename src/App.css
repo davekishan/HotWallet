@@ -7,6 +7,9 @@
   box-sizing: border-box;
   font-family: 'Quicksand', sans-serif;
 }
+.navbar-brand{
+padding: 10px;
+}
 body 
 {
  
@@ -223,8 +226,8 @@ input[type="submit"]:active
 }
 
 .navbar-dark{
-  --bs-navbar-hover-color: rgb(25 135 43);
-  --bs-navbar-brand-hover-color: #19872b;
+  --bs-navbar-hover-color: #1ec93a;
+  --bs-navbar-brand-hover-color: #1ec93a;
 }
 
 

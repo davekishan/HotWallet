@@ -6,12 +6,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import TransferHistory from "./TransactionHistory";
 import { Loader } from "./Loader";
 
-const SendEth = ({address,historyState}) => {
+const SendEth = ({address,historyState,chain}) => {
   const [loader, setloader] = useState(false);
   const [account,setaccount]=useState();
   const [value,setvalue]=useState();
-  
 
+  
   const sendeth = () => {
     setloader(true)
     fetch("/api/wallet/sendeth",{
@@ -91,7 +91,7 @@ const SendEth = ({address,historyState}) => {
         <ToastContainer />
 
       </div>
-      <TransferHistory historyState={historyState}/>
+      <TransferHistory historyState={historyState} chain={chain}/>
       {
         loader && <Loader/>
       }

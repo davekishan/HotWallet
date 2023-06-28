@@ -16,7 +16,6 @@ import { useEffect } from "react";
 import web3 from "web3";
 import { Getallac } from "../component/getallac";
 import { ethers } from "ethers";
-import TransferHistory from "../component/TransactionHistory";
 import Moralis from "moralis";
 Moralis.start({
   apiKey: "eR0DVzOhUz8gYF1sxPIh4NBfMFtNAEOG2Fbqr1jNOnmFr9jX9GO7RsV4xTdbYKZ6",
@@ -58,6 +57,8 @@ function App() {
         console.log("polygon");
         console.log(response.raw.balance);
         setbalance((Number(response.raw.balance) / 1e18).toFixed(3));
+        transactionHistory(add,chain)
+        
       }
     }
     
@@ -106,6 +107,7 @@ function App() {
                   address={address}
                   history={history}
                   historyState={historyState}
+                  chain={chain}
                 />
               }
             ></Route>

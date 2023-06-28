@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import web3 from "web3"
 import img from "../src/assets/pngwing.com.png"
 import { Getallac } from './getallac';
+import { Chain } from "./Chain";
 
 export const Navbar = ({address,getbalance,balance,accountchange,HistoryFun}) => {
   const navigate=useNavigate();
@@ -62,7 +63,7 @@ export const Navbar = ({address,getbalance,balance,accountchange,HistoryFun}) =>
             </NavLink>
           </div>
         </div>
-        <h5 className='navbar-brand'><div style={{color:"green"}}><Getallac accountchange={accountchange} HistoryFun={HistoryFun}/> <button style={{}} onClick={() =>  navigator.clipboard.writeText(address)}><img src={img} alt="" className='copy-button'/></button></div> Blanace : {balance} ETH </h5>
+        <h5 className='navbar-brand'><div style={{color:"green"}}><Getallac accountchange={accountchange} HistoryFun={HistoryFun}/> <button style={{}} onClick={() =>  navigator.clipboard.writeText(address)}><img src={img} alt="" className='copy-button'/></button><Chain/></div> Blanace : {balance} ETH </h5>
         <button className='btn btn-success mx-5' onClick={logout}>Logout</button>
       </nav>
       <ToastContainer />

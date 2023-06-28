@@ -10,13 +10,7 @@ export const Navbar = ({ address,setaddress, setChain,chain, balance, accountcha
   const navigate = useNavigate();
   const [loader, setloader] = useState(false);
 
-  useEffect(() => {
-    setloader(true);
-    //getbalance();
-    setloader(false);
-    console.log("chain");
-    // console.log(chain);
-  }, [chain]);
+
 
   const logout = () => {
     fetch("/api/login/logout")

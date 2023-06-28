@@ -3,31 +3,15 @@ import { Table } from "@web3uikit/core";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import web3 from "web3"
+import Moralis from "moralis";
 
 
-const TransferHistory = ({address}) => {
-  const [historyState, setHistoryState] = useState(history);
-
+const TransferHistory = ({historyState}) => {
   
-  useEffect(()=>{
-    HistoryFun()
-  },[address])
+  
+  
+  
 
-
-  const HistoryFun = () => {
-    fetch("/api/wallet/gethistory/"+address)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          setHistoryState(data.history);
-          console.log("After History get")
-          console.log(data.hostory)
-          return 200;
-        }
-      });
-
-
-  };
 
   return (
     <>

@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import TransferHistory from "./TransactionHistory";
 import { Loader } from "./Loader";
 
-const SendEth = ({getbalance,address,HistoryFun,history}) => {
+const SendEth = ({address,historyState}) => {
   const [loader, setloader] = useState(false);
   const [account,setaccount]=useState();
   const [value,setvalue]=useState();
@@ -29,12 +29,11 @@ const SendEth = ({getbalance,address,HistoryFun,history}) => {
       .then((data) => {
         if (data.success) {
           toast.success(data.message)
-          HistoryFun(address)
-          getbalance(address)
+         
           setloader(false);
         } else {
           setloader(false);
-          location.reload()
+          // location.reload()
           toast.error(data.message)
          
         }
@@ -92,7 +91,7 @@ const SendEth = ({getbalance,address,HistoryFun,history}) => {
         <ToastContainer />
 
       </div>
-      <TransferHistory address={address}/>
+      <TransferHistory historyState={historyState}/>
       {
         loader && <Loader/>
       }

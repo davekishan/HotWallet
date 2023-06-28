@@ -106,6 +106,7 @@ function App() {
                   address={address}
                   history={history}
                   historyState={historyState}
+                  chain={chain}
                 />
               }
             ></Route>

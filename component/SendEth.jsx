@@ -19,7 +19,8 @@ const SendEth = ({address,historyState,chain}) => {
       body: JSON.stringify({
         account: account,
         value: value,
-        from:address
+        from:address,
+        chain:chain
       }),
       headers: {
         'Content-type': 'application/json'

@@ -30,7 +30,7 @@ export const Navbar = ({ address,setaddress, setChain,chain, balance, accountcha
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <NavLink className="navbar-brand" to="/home">
-          DWallet
+         <b>DWallet</b> 
         </NavLink>
         <button
           className="navbar-toggler"
@@ -46,7 +46,7 @@ export const Navbar = ({ address,setaddress, setChain,chain, balance, accountcha
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
             <NavLink className="nav-item nav-link" to="/home">
-              Home <span className="sr-only"></span>
+              <b>Home</b> <span className="sr-only"></span>
             </NavLink>
             <NavLink className="nav-item nav-link" to="/sendeth">
               SendEth

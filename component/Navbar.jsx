@@ -1,37 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import web3 from "web3"
-import img from "../src/assets/pngwing.com.png"
-import { Getallac } from './getallac';
-import { Chain } from "./Chain";
+import "react-toastify/dist/ReactToastify.css";
+import web3 from "web3";
+import img from "../src/assets/pngwing.com.png";
+import { Getallac } from "./getallac";
 
-export const Navbar = ({address,getbalance,balance,accountchange,HistoryFun}) => {
-  const navigate=useNavigate();
+export const Navbar = ({ address,setaddress, setChain,chain, balance, accountchange }) => {
+  const navigate = useNavigate();
   const [loader, setloader] = useState(false);
 
   useEffect(() => {
     setloader(true);
-    getbalance();
+    //getbalance();
     setloader(false);
-  }, []);
+    console.log("chain");
+    // console.log(chain);
+  }, [chain]);
 
-  const logout=()=>{
-    fetch('/api/login/logout').then(response => response.json())
-    .then((data) => {
-      
-      if (data.success) {
-        toast.success('Loged Out')
-        setloader(false)
-        navigate('/')
-      }else{
-        toast.error('Failed')
-      }
-    })
-
-  }
-  
+  const logout = () => {
+    fetch("/api/login/logout")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          toast.success("Loged Out");
+          setloader(false);
+          navigate("/");
+        } else {
+          toast.error("Failed");
+        }
+      });
+  };
 
   return (
     <div>
@@ -63,8 +62,29 @@ export const Navbar = ({address,getbalance,balance,accountchange,HistoryFun}) =>
             </NavLink>
           </div>
         </div>
-        <h5 className='navbar-brand'><div style={{color:"green"}}><Getallac accountchange={accountchange} HistoryFun={HistoryFun}/> <button style={{}} onClick={() =>  navigator.clipboard.writeText(address)}><img src={img} alt="" className='copy-button'/></button><Chain/></div> Blanace : {balance} ETH </h5>
-        <button className='btn btn-success mx-5' onClick={logout}>Logout</button>
+        <h5 className="navbar-brand">
+          <div style={{ color: "green" }}>
+            <Getallac accountchange={accountchange} setaddress={setaddress }setChain={setChain} />{" "}
+            <button
+              style={{}}
+              onClick={() => navigator.clipboard.writeText(address)}
+            >
+              <img src={img} alt="" className="copy-button" />
+            </button>
+          </div>
+         
+          <div>
+            {chain === "0xaa36a7" && <div>Balance: {balance} ETH</div>}
+           </div><div> 
+            {chain === "0x13881" && <div>Balance: {balance} MATIC</div>}
+          </div>
+
+         {/* <div>Balance : {balance} ETH </div>
+          <div>Balance : {balance} MATIC </div>  */}
+        </h5>
+        <button className="btn btn-success mx-5" onClick={logout}>
+          Logout
+        </button>
       </nav>
       <ToastContainer />
     </div>

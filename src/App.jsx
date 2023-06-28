@@ -24,7 +24,6 @@ import TransferHistory from '../component/TransactionHistory'
 function App() {
   const [address,setaddress]=useState("")
   const [balance,setbalance]=useState("")
-  const [history,sethistory]=useState({});
 
 
   const getbalance = async (address) => {
@@ -83,7 +82,7 @@ function App() {
             ></Route>
             <Route
               exact path="/sendeth"
-              element={<SendEth getbalance={getbalance} address={address} history={history}/>}
+              element={<SendEth getbalance={getbalance} address={address} />}
             ></Route>
             <Route
               exact path="/loader"

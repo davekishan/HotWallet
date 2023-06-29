@@ -11,7 +11,7 @@ const SendEth = ({address,historyState,chain}) => {
   const [account,setaccount]=useState();
   const [value,setvalue]=useState();
 
-  
+
   const sendeth = () => {
     setloader(true)
     fetch("/api/wallet/sendeth",{
@@ -46,14 +46,14 @@ const SendEth = ({address,historyState,chain}) => {
       
       <div className="container py-5">
         <h1 className="text-center" style={{ color: "white" }}>
-          Send Eth With Dwallet
+          Send With Dwallet
         </h1>
         <div className="row">
           <div className="col-lg-7 mx-auto">
             <div className="bg-white rounded-lg  shadow-sm p-5">
               <div className="tab-content">
                 <div id="nav-tab-card" className="tab-pane fade show active">
-                  {/* <p className="alert alert-success"> Success or error</p> */}
+                
                   <form role="form">
                     <div className="form-group">
                       <input
@@ -69,7 +69,7 @@ const SendEth = ({address,historyState,chain}) => {
                       <input
                         style={{ margin: "10px" }}
                         type="Number"
-                        placeholder="Enter Amount in ETH"
+                        placeholder="Enter Amount"
                         required
                         className="form-control"
                         value={value}
@@ -81,7 +81,7 @@ const SendEth = ({address,historyState,chain}) => {
                       type="button"
                       className="subscribe btn btn-success btn-block  shadow-sm"
                       onClick={sendeth} style={{marginLeft:"250px"}}>
-                      Send ETH
+                      Send
                     </button>
                   </form>
                 </div>

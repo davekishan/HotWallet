@@ -390,7 +390,9 @@ input[type="submit"]:active
     transform: rotate(360deg);
   }
 }
-
+.bg-white{
+  border-radius: 15px;
+}
 
 .copy-button{
   height: 28px;

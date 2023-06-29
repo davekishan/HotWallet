@@ -45,8 +45,8 @@ const SendEth = ({address,historyState,chain}) => {
 
       
       <div className="container py-5">
-        <h1 className="text-center" style={{ color: "white" }}>
-          Send With Dwallet
+        <h1 className="text-center" style={{ color: "#0f0" }}>
+          Send Eth With Dwallet
         </h1>
         <div className="row">
           <div className="col-lg-7 mx-auto">

@@ -10,7 +10,7 @@ const TransferHistory = ({ historyState, chain }) => {
       <div
         className="text-center"
         style={{
-          color: "#1ec93a",
+          color: "#0f0",
           fontSize: "xx-large",
           paddingBottom: "20px",
         }}

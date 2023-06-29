@@ -67,7 +67,7 @@ export const Home = () => {
 
 
 
-          <h1 className="text-center" style={{ color: "white" }}>
+          <h1 className="text-center" style={{ color: "#0f0" }}>
             Create Wallet
           </h1>
           <div className="row">
@@ -83,7 +83,7 @@ export const Home = () => {
                       >
                         Create Wallet
                       </button>
-                      <p>Here is your new hotwallet:{address}</p>
+                     
                     </form>
                   </div>
                 </div>

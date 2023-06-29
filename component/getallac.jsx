@@ -33,24 +33,21 @@ export const Getallac = ({ accountchange,setChain,setaddress }) => {
       });
   };
   let optionItems = data?.user?.map((item) => (
-    <option key={item.array}>{item.walletAddress}</option>
+    <option className="option-dropdown" key={item.array}>{item.walletAddress}</option>
   ));
 
   return (
     <>
-      <select value={selectedOption} onChange={handleSelectChange}>
-        <option defaultValue="select Account">Select Account</option>
+      <select className="dropdown" value={selectedOption} onChange={handleSelectChange}>
+        <option className="option-dropdown" defaultValue="select Account">Select Account</option>
         {optionItems}
       </select>
-      <select onChange={handlechainchange}>
+      <select className="dropdown" onChange={handlechainchange}>
         <option defaultValue>Select Chain</option>
         <option value="0xaa36a7">Ethereum</option>
         <option value="0x13881">Polygon</option>
       </select>
-      {/* {
-                    loader &&
-                         <Loader/>
-                } */}
+    
     </>
   );
 };

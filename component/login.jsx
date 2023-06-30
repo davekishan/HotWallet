@@ -6,79 +6,114 @@ import "react-toastify/dist/ReactToastify.css";
 import { Loader } from "./Loader";
 
 export const Login = () => {
-    
-    
-    const [email,setemail]=useState("");
-    const [password,setpassword]=useState("");
-    const [loader, setloader] = useState(false);
-    const navigate = useNavigate()
-  
-    
-    useEffect(() => {
-        setloader(true)
-        fetch('/api/login/checksession').then(response => response.json())
-          .then((data) => {
-            if (data.success) {
-              setloader(false)
-              navigate('/home')
-            }
-            else{
-              navigate('/')
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
 
-            }
-          })
-        setloader(false)
-      }, [])
-      
+  const [loader, setloader] = useState(false);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    setloader(true);
+    console.log("This is login useeffect");
+    fetch("/api/login/checksession")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          setloader(false);
+          navigate("/home");
+        } else {
+          navigate("/");
+        }
+      });
+    setloader(false);
+  }, []);
 
-      const login = (e) => {
-        e.preventDefault();
-        setloader(true)
-        const response = fetch('/api/login/login', {
-          method: 'post',
-          body: JSON.stringify({
-            email: email,
-            password: password
-          }),
-          headers: {
-            'Content-type': 'application/json'
-          }
-        }).then(res => res.json())
-          .then((data) => {
-            if (data.success) {
-             
-              setloader(false)
-              toast.success('LogedIn')
-              navigate('/home')
-            } else {
-                toast.error(data.message)
-              setloader(false)
-            }
-          })
-      }
-    
-// const sendmaster=()=>{
-//   setloader(true)
-//   fetch('/api/login/sendtomaster').then(response => response.json())
-//   .then((data) => {
-//     setloader(false)
-//     return 200;
-//   })
-// }
+  const loginUser = (e) => {
+    e.preventDefault();
+    setloader(true);
+    console.log("form submitted ✅");
+    const response = fetch("/api/login/login", {
+      method: "post",
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setloader(false);
+          navigate(0, "/home");
+          toast.success("LoggedIn");
+        } else {
+          toast.error(data.message);
+          setloader(false);
+        }
+      });
+  };
 
-
-
-    return (
-        <div>
-
-            <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
-
-                <div className="signin">
-
-                    <div className="content">
-
-                        <h2>Sign In</h2>
+  return (
+    <div>
+      <section style={{ background: "green" }}>
+        {" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>{" "}
+        <span></span> <span></span> <span></span> <span></span> <span></span>
+        <div className="signin">
+          <div className="content">
+            <h2>Sign In</h2>
 
             <form className="form" onSubmit={loginUser}>
               <div className="inputBox">

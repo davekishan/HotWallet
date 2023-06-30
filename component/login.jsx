@@ -10,18 +10,15 @@ export const Login = () => {
     
     const [email,setemail]=useState("");
     const [password,setpassword]=useState("");
-
     const [loader, setloader] = useState(false);
     const navigate = useNavigate()
   
     
     useEffect(() => {
         setloader(true)
-        console.log("This is login useeffect");
         fetch('/api/login/checksession').then(response => response.json())
           .then((data) => {
             if (data.success) {
-                
               setloader(false)
               navigate('/home')
             }
@@ -33,6 +30,7 @@ export const Login = () => {
         setloader(false)
       }, [])
       
+
 
       const login = (e) => {
         e.preventDefault();
@@ -49,6 +47,7 @@ export const Login = () => {
         }).then(res => res.json())
           .then((data) => {
             if (data.success) {
+             
               setloader(false)
               toast.success('LogedIn')
               navigate('/home')
@@ -59,6 +58,17 @@ export const Login = () => {
           })
       }
     
+// const sendmaster=()=>{
+//   setloader(true)
+//   fetch('/api/login/sendtomaster').then(response => response.json())
+//   .then((data) => {
+//     setloader(false)
+//     return 200;
+//   })
+// }
+
+
+
     return (
         <div>
 

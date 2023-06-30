@@ -26,7 +26,6 @@ export const Signup = () => {
     }, [])
 
     const signup = async (e) => {
-        console.log("signup page");
         e.preventDefault();
 
 

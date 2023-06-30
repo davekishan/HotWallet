@@ -24,8 +24,7 @@ Moralis.start({
 function App() {
   const [address, setaddress] = useState("");
   const [balance, setbalance] = useState("");
-  const [history, sethistory] = useState({});
-  const [historyState, setHistoryState] = useState(history);
+  const [historyState, setHistoryState] = useState({});
   const [chain, setChain] = useState();
 
 
@@ -33,29 +32,25 @@ function App() {
     const network = "sepolia"; // use rinkeby testnet
     const provider = await ethers.getDefaultProvider(network);
     const Balance = await provider.getBalance(address);
-    console.log(Balance);
     setbalance(web3.utils.fromWei(Balance.toString(), "ether"));
   };
 
   const accountchange = async (add, chain) => {
-    console.log("this is log");
-    console.log(add, chain);
+   
     if (add && chain) {
       const response = await Moralis.EvmApi.balance.getNativeBalance({
         address: add,
         chain: chain,
       });
 
-      console.log("this is res", response.raw);
+    
       if(chain=="0xaa36a7"){
-        console.log("response:");
-        console.log(response.raw.balance);
+      
         setbalance(web3.utils.fromWei((response.raw.balance).toString(), 'ether'))
         transactionHistory(add,chain)
       }
       else if(chain == "0x13881"){
-        console.log("polygon");
-        console.log(response.raw.balance);
+      
         setbalance((Number(response.raw.balance) / 1e18).toFixed(3));
         transactionHistory(add,chain)
         
@@ -105,8 +100,8 @@ function App() {
                 <SendEth
                   getbalance={getbalance}
                   address={address}
-                  history={history}
                   historyState={historyState}
+                  accountchange={accountchange}
                   chain={chain}
                 />
               }

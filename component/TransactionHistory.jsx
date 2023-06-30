@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import web3 from "web3";
 
 const TransferHistory = ({ historyState, chain }) => {
-  
-  return ( 
+
+  return (
     <>
       <div
         className="text-center"
@@ -18,7 +18,7 @@ const TransferHistory = ({ historyState, chain }) => {
         Transection History
       </div>
       <div>
-        {console.log(historyState.result)}
+       
         {historyState?.result?.length > 0 && (
           <Table
             pageSize={8}

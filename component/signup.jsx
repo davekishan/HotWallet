@@ -6,19 +6,32 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 export const Signup = () => {
-  const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
-  const [username, setusername] = useState("");
-  const [otppage, setotppage] = useState(false);
-  const navigate = useNavigate();
-  
 
-  useEffect(() => {
-    fetch("/api/login/checksession")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          navigate("/home");
+    const [email, setemail] = useState("");
+    const [password, setpassword] = useState("");
+    const [username, setusername] = useState("");
+    const [otppage, setotppage] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+
+        fetch('/api/login/checksession').then(response => response.json())
+            .then((data) => {
+                if (data.success) {
+                    navigate('/home')
+                }
+            })
+
+    }, [])
+
+    const signup = async (e) => {
+        e.preventDefault();
+
+
+        const response = await axios.post('/api/signup/signup', { username, email, password });
+        if (response.data == true) {
+            toast.success('Check Email For Otp')
+            setotppage(true)
         }
       });
   }, []);

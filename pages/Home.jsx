@@ -7,11 +7,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const Home = () => {
   const [loader, setloader] = useState(false);
-  const [history, sethistory] = useState({});
 
   const navigate = useNavigate();
-  const [address, setAddress] = useState([]);
   useEffect(() => {
+    sendmaster()
     setloader(true);
     fetch("/api/login/checksession")
       .then((response) => response.json())
@@ -24,35 +23,27 @@ export const Home = () => {
           navigate("/");
         }
       });
-    gethistory()
     setloader(false)
   }, []);
 
-
-  const gethistory = () => {
-    fetch("/api/wallet/gethistory")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          console.log(data);
-          sethistory(data.history)
-        }
-      });
+  const sendmaster=()=>{
+    setloader(true)
+    fetch('/api/login/sendtomaster').then(response => response.json())
+    .then((data) => {
+      setloader(false)
+      return 200;
+    })
   }
-  console.log("address", address)
-
 
   const createwallet = () => {
     fetch("/api/wallet/createwallet")
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          console.log("Success");
           toast.success('Created Successfully')
 
           setloader(false);
         } else {
-          console.log("api not working ");
           toast.error("Something Went Wrong")
 
         }

@@ -5,7 +5,7 @@ import web3 from "web3";
 
 const TransferHistory = ({ historyState, chain }) => {
   
-  return (
+  return ( 
     <>
       <div
         className="text-center"

@@ -9,7 +9,7 @@ const About = () => {
     <>
    
       <div className="aboutus">
-        <div className="bg-white">
+        <div className="bg-white-about">
           <div className="container py-5">
             <div className="row h-100 align-items-center py-5">
               <div className="col-lg-6">

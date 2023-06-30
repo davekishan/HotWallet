@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import web3 from "web3";
 import img from "../src/assets/pngwing.com.png";
 import { Getallac } from "./getallac";
 
@@ -49,7 +48,7 @@ export const Navbar = ({ address,setaddress, setChain,chain, balance, accountcha
               <b>Home</b> <span className="sr-only"></span>
             </NavLink>
             <NavLink className="nav-item nav-link" to="/sendeth">
-              SendEth
+              SendTransaction
             </NavLink>
             <NavLink className="nav-item nav-link" to="/about">
               About<span className="sr-only"></span>

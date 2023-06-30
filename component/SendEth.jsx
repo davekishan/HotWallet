@@ -99,7 +99,7 @@ const SendEth = ({address,historyState,chain,accountchange}) => {
             <div className="bg-white rounded-lg  shadow-sm p-5">
               <div className="tab-content">
                 <div id="nav-tab-card" className="tab-pane fade show active">
-                  {/* <p className="alert alert-success"> Success or error</p> */}
+                
                   <form role="form">
                     <div className="form-group">
                       <input

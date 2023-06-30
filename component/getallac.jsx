@@ -7,20 +7,17 @@ export const Getallac = ({ accountchange,setChain,setaddress }) => {
   }, []);
   const [selectedOption, setSelectedOption] = useState("");
   const [data, setdata] = useState();
-  const [chain,setchain]=useState();
   const [loader, setloader] = useState(false);
   
 
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
     setaddress(event.target.value)
-    accountchange(event.target.value,chain);
-
   };
 
   const handlechainchange = (event) => {
     setChain(event.target.value);
-    setchain(event.target.value)
+    console.log("chain handle")
     accountchange(selectedOption, event.target.value);
   };
   const getac = () => {
@@ -47,8 +44,8 @@ export const Getallac = ({ accountchange,setChain,setaddress }) => {
       </select>
       <select className="dropdown" onChange={handlechainchange}>
         <option defaultValue>Select Chain</option>
-        <option value="0xaa36a7">ETHEREUM</option>
-        <option value="0x13881">POLYGON</option>
+        <option value="0xaa36a7">Ethereum</option>
+        <option value="0x13881">Polygon</option>
       </select>
     
     </>

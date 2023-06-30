@@ -5,12 +5,32 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import TransferHistory from "./TransactionHistory";
 import { Loader } from "./Loader";
+import { useNavigate } from "react-router-dom";
+import { Qrgen } from "./Qrgen";
 
-const SendEth = ({address,historyState,chain}) => {
+
+const SendEth = ({address,historyState,chain,accountchange}) => {
   const [loader, setloader] = useState(false);
   const [account,setaccount]=useState();
   const [value,setvalue]=useState();
+  const [qr,setqr]=useState();
+  const [check,setcheck]=useState(false)
+  const navigate=useNavigate();
 
+  useEffect(()=>{
+    setloader(true)
+    fetch("/api/login/checksession")
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        setloader(false)
+        
+      } else {
+        setloader(false)
+        navigate("/");
+      }
+    });
+  },[])
   
   const sendeth = () => {
     setloader(true)
@@ -29,9 +49,35 @@ const SendEth = ({address,historyState,chain}) => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          toast.success(data.message)
-         
+          Notification.requestPermission((permission)=> {
+            if (permission === "granted") {
+             const notifiction=new Notification("Transaction Complete")
+
+             notifiction.onclick=()=>{
+              if(data.chain == "0xaa36a7")
+              {
+                window.open(`https://sepolia.etherscan.io//tx/${data.hash}`)
+              }else
+              {
+                window.open(`https://mumbai.polygonscan.com//tx/${data.hash}`)
+              }
+             }
+            }
+         })
+
+         toast.success(data.message)
+         if(data.chain == "0xaa36a7")
+         {
+           setqr(`https://sepolia.etherscan.io//tx/${data.hash}`)
+           setcheck(true)
+         }else if(data.chain=="0x13881"){
+           setqr(`https://mumbai.polygonscan.com//tx/${data.hash}`)
+           setcheck(true)
+         }
+          accountchange(address,chain)
           setloader(false);
+          
+          
         } else {
           setloader(false);
           // location.reload()
@@ -46,7 +92,7 @@ const SendEth = ({address,historyState,chain}) => {
       
       <div className="container py-5">
         <h1 className="text-center" style={{ color: "#0f0" }}>
-          Send Eth With Dwallet
+          Send With Dwallet
         </h1>
         <div className="row">
           <div className="col-lg-7 mx-auto">
@@ -69,7 +115,7 @@ const SendEth = ({address,historyState,chain}) => {
                       <input
                         style={{ margin: "10px" }}
                         type="Number"
-                        placeholder="Enter Amount in ETH"
+                        placeholder="Enter Amount"
                         required
                         className="form-control"
                         value={value}
@@ -81,14 +127,19 @@ const SendEth = ({address,historyState,chain}) => {
                       type="button"
                       className="subscribe btn btn-success btn-block  shadow-sm"
                       onClick={sendeth} style={{marginLeft:"250px"}}>
-                      Send ETH
-                    </button>
+                      Send                    </button>
                   </form>
                 </div>
               </div>
             </div>
           </div>
+        {check && 
+          <Qrgen qr={qr}/>
+        }
+          
         </div>
+
+
         <ToastContainer />
 
       </div>

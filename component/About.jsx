@@ -1,13 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import img from "../src/assets/about.png"
+import { Loader } from "./Loader";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
-
+  const [loader, setloader] = useState(false)
+  const navigate=useNavigate();
+  useEffect(() => {
+    setloader(true)
+    fetch("/api/login/checksession")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          setloader(false)
+        } else {
+          setloader(false)
+          navigate("/");
+        }
+      });
+  }, [])
 
 
   return (
     <>
-   
+
       <div className="aboutus">
         <div className="bg-white">
           <div className="container py-5">
@@ -15,7 +31,7 @@ const About = () => {
               <div className="col-lg-6">
                 <h1 className="about display-4">About us</h1>
                 <p className="lead text-muted mb-0">
-                  What is Dwallet? 
+                  What is Dwallet?
                 </p>
                 <p className="lead text-muted mb-5">
                   <br />
@@ -28,13 +44,16 @@ const About = () => {
                   alt=""
                   className="img-fluid"
                 />
-              </div> 
+              </div>
             </div>
           </div>
         </div>
+        {
+          loader && <Loader />
+        }
       </div>
-      
-     
+
+
     </>
   );
 };

@@ -36,41 +36,49 @@ function App() {
   };
 
   const accountchange = async (add, chain) => {
-   
     if (add && chain) {
-      const response = await Moralis.EvmApi.balance.getNativeBalance({
-        address: add,
-        chain: chain,
-      });
 
-    
-      if(chain=="0xaa36a7"){
-      
-        setbalance(web3.utils.fromWei((response.raw.balance).toString(), 'ether'))
-        transactionHistory(add,chain)
+      fetch("/api/wallet/getbalance/"+add)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            setbalance(web3.utils.fromWei((data.balance).toString(), 'ether'))
+          }
+        });
+      // if (add && chain) {
+      //   const response = await Moralis.EvmApi.balance.getNativeBalance({
+      //     address: add,
+      //     chain: chain,
+      //   });
+
+
+      if (chain == "0xaa36a7") {
+
+        //setbalance(web3.utils.fromWei((response.raw.balance).toString(), 'ether'))
+        transactionHistory(add, chain)
       }
-      else if(chain == "0x13881"){
-      
-        setbalance((Number(response.raw.balance) / 1e18).toFixed(3));
-        transactionHistory(add,chain)
-        
+      else if (chain == "0x13881") {
+
+        //setbalance((Number(response.raw.balance) / 1e18).toFixed(3));
+        transactionHistory(add, chain)
+
       }
     }
-    
+
   };
 
-  const transactionHistory = async (address,chain) => {
+  const transactionHistory = async (address, chain) => {
     const response = await Moralis.EvmApi.transaction.getWalletTransactions({
-      
-      chain: chain, 
+
+      chain: chain,
       address: address,
     });
     setHistoryState(response.raw);
     return response.raw;
   };
-  
-    
-  
+
+
+
 
   return (
     <>

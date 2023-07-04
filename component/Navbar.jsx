@@ -70,8 +70,6 @@ export const Navbar = ({ address,setaddress, setChain,chain, balance, accountcha
             {chain === "0x13881" && <div>Balance: {balance} MATIC</div>}
           </div>
 
-         {/* <div>Balance : {balance} ETH </div>
-          <div>Balance : {balance} MATIC </div>  */}
         </h5>
         <button className="btn btn-success mx-5" onClick={logout}>
           Logout

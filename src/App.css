@@ -393,6 +393,9 @@ input[type="submit"]:active
 .bg-white{
   border-radius: 15px;
 }
+.bg-white-about{
+  background-color:white
+}
 
 .copy-button{
   height: 28px;

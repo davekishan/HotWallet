@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Loader } from "../component/Loader";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-
+import "react-toastify/dist/ReactToastify.css";
 
 export const Home = () => {
   const [loader, setloader] = useState(false);
@@ -16,24 +15,32 @@ export const Home = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          setloader(false)
+          setloader(false);
           navigate("/home");
         } else {
-          
           navigate("/");
         }
       });
-    setloader(false)
+    setloader(false);
   }, []);
 
-  const sendmaster=()=>{
-    setloader(true)
-    fetch('/api/login/sendtomaster').then(response => response.json())
-    .then((data) => {
-      setloader(false)
-      return 200;
-    })
-  }
+  const sendmaster = () => {
+    setloader(true);
+    fetch("/api/login/sendtomaster")
+      .then((response) => response.json())
+      .then((data) => {
+        toast.success("Sended to master Successfully");
+        setloader(false);
+        return 200;
+      });
+  };
+
+  // const createwallet = async() =>{
+  //   const response = await fetch("/api/wallet/createwallet")
+  //   console.log("This is created wallet:",response);
+  //   toast.success("Created Successfully");
+
+  // }
 
   const createwallet = (e) => {
     e.preventDefault()
@@ -46,21 +53,16 @@ export const Home = () => {
           toast.success('Created Successfully')
           setloader(false);
         } else {
-          toast.error("Something Went Wrong")
-
+          toast.error("Something Went Wrong");
         }
         window.location.reload(false);
       });
     };
 
-
   return (
     <div>
       <div className="text-center">
         <div className="container py-5">
-
-
-
           <h1 className="text-center" style={{ color: "#0f0" }}>
             Create Wallet
           </h1>
@@ -77,24 +79,16 @@ export const Home = () => {
                       >
                         Create Wallet
                       </button>
-                     
                     </form>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div>
-
-          </div>
+          <div></div>
         </div>
-      {
-        loader && <Loader />
-
-      }
+        {loader && <Loader />}
       </div>
-
-
     </div>
   );
 };

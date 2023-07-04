@@ -28,6 +28,8 @@ function App() {
   const [chain, setChain] = useState();
 
 
+
+
   const getbalance = async (address) => {
     const network = "sepolia"; // use rinkeby testnet
     const provider = await ethers.getDefaultProvider(network);

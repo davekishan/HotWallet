@@ -9,8 +9,6 @@ export const Navbar = ({ address,setaddress, setChain,chain, balance, accountcha
   const navigate = useNavigate();
   const [loader, setloader] = useState(false);
 
-
-
   const logout = () => {
     fetch("/api/login/logout")
       .then((response) => response.json())
@@ -48,10 +46,10 @@ export const Navbar = ({ address,setaddress, setChain,chain, balance, accountcha
               <b>Home</b> <span className="sr-only"></span>
             </NavLink>
             <NavLink className="nav-item nav-link" to="/sendeth">
-              SendTransaction
+              <b>SendTransaction</b>
             </NavLink>
             <NavLink className="nav-item nav-link" to="/about">
-              About<span className="sr-only"></span>
+             <b>About</b><span className="sr-only"></span>
             </NavLink>
           </div>
         </div>

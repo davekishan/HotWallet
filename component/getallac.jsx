@@ -5,18 +5,23 @@ export const Getallac = ({ accountchange,setChain,setaddress }) => {
   useEffect(() => {
     getac();
   }, []);
+  
   const [selectedOption, setSelectedOption] = useState("");
   const [data, setdata] = useState();
   const [loader, setloader] = useState(false);
+  const [temp,settemp]=useState();
   
 
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
     setaddress(event.target.value)
+    accountchange(event.target.value, temp);
+
   };
 
   const handlechainchange = (event) => {
     setChain(event.target.value);
+    settemp(event.target.value)
     console.log("chain handle")
     accountchange(selectedOption, event.target.value);
   };

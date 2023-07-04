@@ -9,8 +9,6 @@ export const Navbar = ({ address,setaddress, setChain,chain, balance, accountcha
   const navigate = useNavigate();
   const [loader, setloader] = useState(false);
 
-
-
   const logout = () => {
     fetch("/api/login/logout")
       .then((response) => response.json())

@@ -22,7 +22,7 @@ export const Qrgen = (qr) => {
          <div style={{ marginTop: 100,marginLeft:475}}>
           <div>
           <canvas ref={canvasRef} />
-             <p style={{color:'white'}}>Detail Of Latest Transaction</p>
+             <b> <p  style={{color:'white'}}>Details Of Latest Transaction</p></b>
           </div>
           </div>
     </div>

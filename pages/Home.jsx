@@ -7,9 +7,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const Home = () => {
   const [loader, setloader] = useState(false);
-
   const navigate = useNavigate();
   useEffect(() => {
+    
     sendmaster()
     setloader(true);
     fetch("/api/login/checksession")
@@ -35,20 +35,23 @@ export const Home = () => {
     })
   }
 
-  const createwallet = () => {
+  const createwallet = (e) => {
+    e.preventDefault()
+    console.log("inside Function")
     fetch("/api/wallet/createwallet")
       .then((response) => response.json())
       .then((data) => {
+        console.log("Data Is :",data)
         if (data.success) {
           toast.success('Created Successfully')
-
           setloader(false);
         } else {
           toast.error("Something Went Wrong")
 
         }
+        window.location.reload(false);
       });
-  };
+    };
 
 
   return (
